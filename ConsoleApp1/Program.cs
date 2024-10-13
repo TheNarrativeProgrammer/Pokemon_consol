@@ -13,7 +13,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("Hi Reid");
 
-
+            Console.ReadLine();
 
         }
     }
