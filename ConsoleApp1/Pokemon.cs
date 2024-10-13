@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,5 +9,179 @@ namespace ConsoleApp1
 {
     internal class Pokemon
     {
+
+        //**MEMBER VARIABLES**
+        public int mHP;                //Name and Health
+        public string mName;
+        public int mLevel;             //Level and Experience Points
+        public int mEXPoints;
+        public enum Type               //Type and weakenss
+        {
+            Water,
+            Fire,
+            Grass,
+            Colorless,
+        };
+        public Type mType;
+
+        public enum Weakness
+        {
+            Grass,
+            Water,
+            Fire,
+            None,
+            
+        }
+        public Weakness mWeakness;
+
+        public int mAttack_Damage;     //Attack Stats         
+        public int mAttack_AccuracyDemoninator;
+        public int mAttack_BuffMultiplier;
+        public int mAttack_WeaknessMultiplier;
+        public int mAttack_StrengthSubtractor;
+
+
+        //**CONSTRUCTORS**
+        public Pokemon()               //default constructor
+        {
+            //initialize member variables
+            this.mHP = 20;                          //Name and Health
+            this.mName = "Pigey";
+            this.mLevel = 3;                        //Level and Experience Points
+            this.mEXPoints = 0;
+            this.mType = Type.Colorless;            //Type and weakenss
+            this.mWeakness = Weakness.None;
+            this.mAttack_Damage = 5;                //Attacks   
+            this.mAttack_AccuracyDemoninator = 10;
+            this.mAttack_BuffMultiplier = 1;
+            this.mAttack_WeaknessMultiplier = 1;
+            this.mAttack_StrengthSubtractor = 0;
+        }
+
+        //**FUNCTIONS**
+
+        //*MODIFICATIONS TO ATTACK FUNCTIONS.
+
+                                                                                                                        //WEAKNESS AND STRENGTH OF OPPONENT - change damage mods
+        public void CalcWeakStrongDamageAffects(Type InTypeOfOpponent)
+        {
+            //Determine if Players pokemon is strong or weak against opponents type.    
+            switch (this.mType)                                         //If opponent is weak - Double damage       
+            {                                                           //if opponet is strong - subtract 2 from damage
+                case Type.Grass:                                                                                                     //player    vs  opponent
+                    {
+                        if (InTypeOfOpponent == Type.Water)              //OPPONENT IS WEAK                                          //grass     vs  Water
+                        {
+                            this.mAttack_WeaknessMultiplier = 2;
+                        }
+                        if (InTypeOfOpponent == Type.Fire)              //OPPONENT IS STRONG                                        //grass     vs  fire
+                        {
+                            this.mAttack_StrengthSubtractor = 2;
+                        }
+                        break;
+                    }
+                case Type.Water:
+                    {
+                        if (InTypeOfOpponent == Type.Fire)              //OPPONENT IS WEAK                                          //water     vs  fire
+                        {
+                            this.mAttack_WeaknessMultiplier = 2;
+                        }
+                        if (InTypeOfOpponent == Type.Grass)              //OPPONENT IS STRONG                                       //water     vs  grass
+                        {
+                            this.mAttack_StrengthSubtractor = 2;
+                        }
+                        break;
+                    }
+                case Type.Fire:
+                    {
+                        if (InTypeOfOpponent == Type.Grass)              //OPPONENT IS WEAK                                          //fire     vs  grass
+                        {
+                            this.mAttack_WeaknessMultiplier = 2;
+                        }
+                        if (InTypeOfOpponent == Type.Water)              //OPPONENT IS STRONG                                        //fire     vs  water
+                        {
+                            this.mAttack_StrengthSubtractor = 2;
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("In default, in attack swich statment and no weakness or strong affect to damage applied");
+                        break;
+                    }
+            }
+        }
+
+                                                                                                                                //ACCURACY OF ATTACK
+        public virtual bool CalculateAccuracyOfAttack()
+        {
+            Random randomNumObject = new Random();
+            int AccuracyResult = randomNumObject.Next(1, this.mAttack_AccuracyDemoninator);
+            Console.WriteLine(AccuracyResult);
+
+            //Determine if Attack hit. If Result is 1, then attack misses. Any other number attack lands.
+            bool HasAttackLanded = true;
+            if (AccuracyResult == 1)
+            {
+                HasAttackLanded = false;
+            }
+            return HasAttackLanded;
+        }
+
+        //*ATTACK FUNCTIONS*
+
+                                                                                                                                //ATTACK - DAMAGING
+        public virtual int AttackOffensive(Type InTypeOfOpponent, int InCountAttacks)
+        {
+            int DamageToOponent = 0;
+
+            while (InCountAttacks <= 1)                                     //check weakness only on frist attack. Weakness doesn't change, so only perform check once.
+            {
+                CalcWeakStrongDamageAffects(InTypeOfOpponent);
+            }
+         
+            //calc damage
+            bool HasAttackLanded = CalculateAccuracyOfAttack();             //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
+
+            if (HasAttackLanded==true) 
+            {
+            DamageToOponent = this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier;
+            }
+            else 
+            {
+                Console.WriteLine("your attack missed.");
+            }
+
+            //reset buff multiplier to 1
+            this.mAttack_BuffMultiplier = 1;
+
+            return DamageToOponent;
+        }
+
+                                                                                                                                //ATTACK - ACCURACY
+        public virtual void AttackAccuracy(Pokemon InOpponentPokemon)
+        {
+            bool HasAttackLanded = CalculateAccuracyOfAttack();                 //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
+
+            if (HasAttackLanded == true)
+            {
+                InOpponentPokemon.mAttack_AccuracyDemoninator -= 2;             //Change the demoninator of opponents accuracy calulation, making a miss more likely.
+            }
+            else
+            {
+                Console.WriteLine("your attack missed.");
+            }
+        }
+
+                                                                                                                                //ATTACK - BUFF 
+        public virtual void AttackBuff()
+        {
+            //Change the demoninator of opponents accuracy calulation. This is used in CalculateAccuracyOfAttack. Changing Demoninator makes a miss more likely.
+            this.mAttack_BuffMultiplier = 3;
+        }
+
+
+        
+        
     }
 }
