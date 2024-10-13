@@ -11,7 +11,8 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Hi Reid");
+            Story.Intro();
+            Story.PickPokemon();
 
             Console.ReadLine();
 
