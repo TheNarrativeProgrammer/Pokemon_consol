@@ -77,21 +77,20 @@ namespace ConsoleApp1
                 case 1:
                     //set stats for squirtle
                     Console.WriteLine(" You chose 1 ");
-                    pokemonName = "Squirtle";
                     break;
 
                 case 2:
                     //set stats for charmander
                     Console.WriteLine(" You chose 2");
-                    pokemonName = "Charmander";
                     break;
 
                 case 3:
                     //set stats for bulbasaur
                     Console.WriteLine(" You chose 3");
-                    pokemonName = "Bulbasaur";
                     break;
             }
+
+            Functions.Continue();
 
             //name pokemon
 
@@ -101,7 +100,7 @@ namespace ConsoleApp1
 
                 Console.WriteLine("Name your pokemon? (Yes or No)");
 
-                string ifName = Console.ReadLine().ToLower(); ;
+                string ifName = Console.ReadLine().ToLower();
 
                 switch (ifName)
                 {
@@ -123,7 +122,26 @@ namespace ConsoleApp1
 
                     case "no":
 
-                        break;
+                        if(pokemonChoice == 1)
+                        {
+                            pokemonName = "Squirtle";
+                            break;
+                        }
+                        if (pokemonChoice == 2)
+                        {
+                            pokemonName = "Charmander";
+                            break;
+                        }
+                        if (pokemonChoice == 3)
+                        {
+                            pokemonName = "Bulbasaur";
+                            break;
+                        }
+                        else
+                        {
+                            Functions.Error();
+                            continue;
+                        }
 
                     default:
                         Functions.Error();
