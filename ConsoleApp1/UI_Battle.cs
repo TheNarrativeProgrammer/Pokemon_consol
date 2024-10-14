@@ -15,7 +15,7 @@ namespace ConsoleApp1
         public string[] mUI_ResultsLine2_String = { "", "You use Tackle Attack", "You used Sand Attack", "You used sword dance", 
             "enemny use Tackle Attack", "Enemy used Sand Attack", "Enemy used sword dance", };
         public string mUI_ResultsLine2;
-        public string[] mUI_ResultsLine3_String = { "", "You use Tackle Attack", "You won", "You lost", };
+        public string[] mUI_ResultsLine3_String = { "", "Your attack missed", "Your attack did 3x damage", "", };
         public string mUI_ResultsLine3;
 
         public UI_Battle()
@@ -419,7 +419,7 @@ namespace ConsoleApp1
             }
 
         }
-        public void FindPlayerPokeArt(Pokemon InPlayerPokemon, Battle InBattleObject)                                                                       //Art Player
+        public void FindPlayerPokeArt(Pokemon InPlayerPokemon)                                                                       //Art Player
         {
             string[] PlayerPokeArt;         //stores the string of art for the player pokemon.
             string[] PlayerPokeAttackStatBox;   //stores the string of a box to house the players pokemon attack options
@@ -434,21 +434,21 @@ namespace ConsoleApp1
                         //PlayerPokeAttackStatBox = UI2_base;
                         PlayerPokeAttackStatBox = UI_Base_StatAttackBox(InPlayerPokemon);
                         //PlayerPokeResultsBox = UI_Result_Squi;
-                        PlayerPokeResultsBox = UI_Squi_Results(InBattleObject);
+                        PlayerPokeResultsBox = UI_Squi_Results();
                         break;
                     }
                 case "Charamander":
                     {
                         PlayerPokeArt = mUICharamander_String;
                         PlayerPokeAttackStatBox = UI_Base_StatAttackBox(InPlayerPokemon);
-                        PlayerPokeResultsBox = UI_Char_Results(InBattleObject);
+                        PlayerPokeResultsBox = UI_Char_Results();
                         break;
                     }
                 case "Bulbasaur":
                     {
                         PlayerPokeArt = mUIBulbasaur_String;
                         PlayerPokeAttackStatBox = UI_Base_StatAttackBox(InPlayerPokemon);
-                        PlayerPokeResultsBox = UI_Bulb_Results(InBattleObject);
+                        PlayerPokeResultsBox = UI_Bulb_Results();
                         break;
                     }
                 case "Pikachau":
@@ -456,14 +456,14 @@ namespace ConsoleApp1
                         PlayerPokeArt = mUIPikachu_String;
                         //PlayerPokeAttackStatBox = UI_pika;
                         PlayerPokeAttackStatBox = UI_Pika_StatAttackBox(InPlayerPokemon);
-                        PlayerPokeResultsBox = UI_Pika_Results(InBattleObject);
+                        PlayerPokeResultsBox = UI_Pika_Results();
                         break;
                     }
                 default:
                     {
                         PlayerPokeArt = mUIPikachu_String;
                         PlayerPokeAttackStatBox = UI_Pika_StatAttackBox(InPlayerPokemon);
-                        PlayerPokeResultsBox = UI_Pika_Results(InBattleObject);
+                        PlayerPokeResultsBox = UI_Pika_Results();
                         Console.WriteLine("default triggered in art assignment for player");
                         break;
                     }
@@ -524,12 +524,12 @@ namespace ConsoleApp1
             return UI2_base;
         }
 
-        public string[] UI_Bulb_Results(Battle InBattleObject)
+        public string[] UI_Bulb_Results()
         {
             string[] UI_Result_Bulb = {"\t\t\t ",
                 "\t\t\t",
                 "\t\t __________________________________",
-                "\t\t|                                  |",
+                "\t\t|" + mUI_ResultsLine1 + "|",
                 "\t\t\t|                                  |",
                 "\t\t\t|                                  |",
                 "\t\t\t|                                  |",
@@ -544,12 +544,12 @@ namespace ConsoleApp1
             return UI_Result_Bulb;
         }
 
-        public string[] UI_Squi_Results(Battle InBattleObject)
+        public string[] UI_Squi_Results()
         {
               string[] UI_Result_Squi = {"\t\t ",
                 "\t\t                         ",
                 "\t\t\t\t __________________________________",
-                "\t\t\t\t|                                  |",
+                "\t\t\t\t|" + mUI_ResultsLine1 + "|",
                 "\t\t|                                  |",
                 "\t\t|                                  |",
                 "\t\t|                                  |",
@@ -564,12 +564,12 @@ namespace ConsoleApp1
             return UI_Result_Squi;
         }
 
-        public string[] UI_Char_Results(Battle InBattleObject)
+        public string[] UI_Char_Results()
         {
              string[] UI_Result_Char = {"\t\t ",
                 "\t\t                         ",
                 "\t\t __________________________________",
-                "\t\t|                                  |",
+                "\t\t|" + mUI_ResultsLine1 +"  |",
                 "\t\t|                                  |",
                 "\t\t|                                  |",
                 "\t\t|                                  |",
@@ -584,7 +584,7 @@ namespace ConsoleApp1
             return UI_Result_Char;
         }
 
-        public string[] UI_Pika_Results(Battle InBattleObject)
+        public string[] UI_Pika_Results()
         {
               string[] UI_Result_Pik = {"\t\t ",
                 "\t\t                         ",
