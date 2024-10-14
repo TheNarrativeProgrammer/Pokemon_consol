@@ -46,7 +46,7 @@ namespace ConsoleApp1
 
         }
 
-        public static void BattleTime(Pokemon pokemon, Pokemon enemy)
+        public static void BattleTime(Pokemon pokemon)
         {
 
             Console.Clear();
@@ -54,6 +54,25 @@ namespace ConsoleApp1
             int moveChoice;
             int playerDamage;
             int enemyDamage;
+
+            //set enemy stats randomly
+
+            Random randomEnem = new Random();
+            int enemyType = randomEnem.Next(1, 4);
+
+            Pokemon enemy = new Pokemon();
+
+            switch (enemyType)
+            {
+                case 1:
+                    enemy = new Squirtle("Squirtle", "Squirtle");
+                    goto battle;
+
+                case 2:
+                    Bulbasaur enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
+                    goto battle;
+
+            }
 
         battle: 
 
@@ -63,7 +82,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("=========================");
 
-            Console.WriteLine("You: {0}", pokemon.mPokeName);
+            Console.WriteLine("You: {0}", pokemon.mName);
             Console.WriteLine("Your HP: {0}", pokemon.mHP);
 
             Functions.Space();
@@ -92,6 +111,7 @@ namespace ConsoleApp1
                     //player turn
                     playerDamage = pokemon.AttackOffensive(enemy, 0);
                     Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, enemy.mPokeName);
+                    Functions.Space();
 
                     //check if enemy dead
                     if (enemy.mHP <= 0)
@@ -102,6 +122,25 @@ namespace ConsoleApp1
 
                     goto enemy;
 
+                case 2:
+
+                    //player turn
+                    pokemon.AttackAccuracy(enemy);
+                    Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", enemy.mPokeName);
+                    Functions.Space();
+
+                    //enemy turn
+                    goto enemy;
+
+                case 3:
+
+                    //player turn
+                    pokemon.AttackBuff();
+                    Console.WriteLine("You use Attack Buff!");
+                    Functions.Space();
+
+                    //enemy turn
+                    goto enemy;
             }
 
         enemy:
@@ -109,24 +148,43 @@ namespace ConsoleApp1
             Random random = new Random();
             int enemyMove = random.Next(1, 4);
 
-            if (enemyMove == 1)
+            switch (enemyMove)
             {
-                //enemy turn
-                enemyDamage = pokemon.AttackOffensive(pokemon, 0);
-                Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, pokemon.mPokeName);
+                case 1:
+                    //enemy turn
+                    enemyDamage = pokemon.AttackOffensive(pokemon, 0);
+                    Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, pokemon.mName);
+                    Functions.Continue();
 
-                if (pokemon.mHP <= 0)
-                {
-                    Lose(pokemon);
-                    goto end;
-                }
+                    if (pokemon.mHP <= 0)
+                    {
+                        Lose(pokemon);
+                        goto end;
+                    }
 
-                goto battle;
+                    goto battle;
+
+                case 2:
+                    //enemy turn
+                    enemy.AttackAccuracy(pokemon);
+                    Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", pokemon.mName);
+                    Functions.Continue();
+
+                    //player turn
+                    goto battle;
+
+                case 3:
+                    //player turn
+                    enemy.AttackBuff();
+                    Console.WriteLine("Enemy used Attack Buff!");
+                    Functions.Continue();
+
+                    //enemy turn
+                    goto battle;
             }
 
         end:
-            Console.WriteLine("");
-
+            Console.WriteLine("end");
 
         }
 

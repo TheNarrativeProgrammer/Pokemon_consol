@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ConsoleApp1.Pokemon;
+using System.Xml.Linq;
 
 namespace ConsoleApp1
 {
@@ -77,6 +79,17 @@ namespace ConsoleApp1
                 case 1:
                     //set stats for squirtle
                     pokemon.mPokeName = "Squirtle";
+                    pokemon.mHP = 50;                          //Name and Health
+                    pokemon.mLevel = 5;                        //Level and Experience Points
+                    pokemon.mEXPoints = 0;
+                    pokemon.mType = Pokemon.Type.Water;                //Type and weakenss
+                    pokemon.mWeakness = Weakness.Grass;
+                    pokemon.mAttack_Damage = 5;                //Attacks   
+                    pokemon.mAttack_AccuracyDemoninator = 10;
+                    pokemon.mAttack_BuffMultiplier = 1;
+                    pokemon.mAttack_WeaknessMultiplier = 1;
+                    pokemon.mAttack_StrengthSubtractor = 0;
+                    pokemon.mDidAttackLand = true;
                     Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
 
