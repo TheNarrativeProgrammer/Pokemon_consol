@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Squirtle : Pokemon
+    internal class Charmander : Pokemon
     {
+
         //**CONSTRUCTORS**
 
-        public Squirtle(string InName,string InPokeName)                                                   //Param constructor
+        public Charmander(string InName, string InPokeName)                                                   //Param constructor
         {
             //initialize member variables
             this.mHP = 50;                          //Name and Health
@@ -18,8 +19,8 @@ namespace ConsoleApp1
             this.mPokeName = InPokeName;
             this.mLevel = 5;                        //Level and Experience Points
             this.mEXPoints = 0;
-            this.mType = Type.Water;                //Type and weakenss
-            this.mWeakness = Weakness.Grass;
+            this.mType = Type.Fire;                //Type and weakenss
+            this.mWeakness = Weakness.Water;
             this.mAttack_Damage = 5;                //Attacks   
             this.mAttack_AccuracyDemoninator = 10;
             this.mAttack_BuffMultiplier = 1;
