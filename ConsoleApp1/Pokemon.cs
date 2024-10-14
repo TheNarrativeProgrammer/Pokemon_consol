@@ -39,6 +39,7 @@ namespace ConsoleApp1
         public int mAttack_BuffMultiplier;
         public int mAttack_WeaknessMultiplier;
         public int mAttack_StrengthSubtractor;
+        public bool mDidAttackLand;
 
 
         //**CONSTRUCTORS**
@@ -56,6 +57,7 @@ namespace ConsoleApp1
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_WeaknessMultiplier = 1;
             this.mAttack_StrengthSubtractor = 0;
+            this.mDidAttackLand = true;
         }
 
         //**FUNCTIONS**
@@ -120,36 +122,36 @@ namespace ConsoleApp1
             Console.WriteLine(AccuracyResult);
 
             //Determine if Attack hit. If Result is 1, then attack misses. Any other number attack lands.
-            bool HasAttackLanded = true;
+            bool DidAttackLand = true;
             if (AccuracyResult == 1)
             {
-                HasAttackLanded = false;
+                DidAttackLand = false;
             }
-            return HasAttackLanded;
+            return DidAttackLand;
         }
 
         //*ATTACK FUNCTIONS*
 
                                                                                                                                 //ATTACK - DAMAGING
-        public virtual int AttackOffensive(Type InTypeOfOpponent, int InCountAttacks)
+        public virtual int AttackOffensive(Pokemon InDefendingPokemon, int InCountAttacks)
         {
             int DamageToOponent = 0;
 
             while (InCountAttacks <= 1)                                     //check weakness only on frist attack. Weakness doesn't change, so only perform check once.
             {
-                CalcWeakStrongDamageAffects(InTypeOfOpponent);
+                CalcWeakStrongDamageAffects(InDefendingPokemon.mType);
             }
          
             //calc damage
-            bool HasAttackLanded = CalculateAccuracyOfAttack();             //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
+            this.mDidAttackLand = CalculateAccuracyOfAttack();              //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
 
-            if (HasAttackLanded==true) 
+            if (this.mDidAttackLand == true) 
             {
             DamageToOponent = this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier;
             }
             else 
             {
-                Console.WriteLine("your attack missed.");
+                Console.WriteLine("FOR ERROR CHECKING. REMOVE AFTER GAME FINISHED. your attack missed.");
             }
 
             //reset buff multiplier to 1
@@ -161,15 +163,15 @@ namespace ConsoleApp1
                                                                                                                                 //ATTACK - ACCURACY
         public virtual void AttackAccuracy(Pokemon InOpponentPokemon)
         {
-            bool HasAttackLanded = CalculateAccuracyOfAttack();                 //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
+             this.mDidAttackLand = CalculateAccuracyOfAttack();                 //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
 
-            if (HasAttackLanded == true)
+            if (this.mDidAttackLand == true)
             {
                 InOpponentPokemon.mAttack_AccuracyDemoninator -= 2;             //Change the demoninator of opponents accuracy calulation, making a miss more likely.
             }
             else
             {
-                Console.WriteLine("your attack missed.");
+                Console.WriteLine("FOR ERROR TESTING. REMOVE AFTER GAME FINISHED. your attack missed.");
             }
         }
 
@@ -178,6 +180,7 @@ namespace ConsoleApp1
         {
             //Change the demoninator of opponents accuracy calulation. This is used in CalculateAccuracyOfAttack. Changing Demoninator makes a miss more likely.
             this.mAttack_BuffMultiplier = 3;
+            this.mDidAttackLand = true;
         }
 
 
