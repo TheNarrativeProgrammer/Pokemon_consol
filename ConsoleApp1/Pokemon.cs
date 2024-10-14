@@ -13,6 +13,8 @@ namespace ConsoleApp1
         //**MEMBER VARIABLES**
         public int mHP;                //Name and Health
         public string mName;
+        public string[] mPokeNameString = {"Unknown Pokemon","Squirtle","Charamander","Bulbasaur","Pigey","Pikachau",};
+        public string mPokeName;
         public int mLevel;             //Level and Experience Points
         public int mEXPoints;
         public enum Type               //Type and weakenss
@@ -47,7 +49,8 @@ namespace ConsoleApp1
         {
             //initialize member variables
             this.mHP = 20;                          //Name and Health
-            this.mName = "Pigey";
+            this.mName = "";
+            this.mPokeName = mPokeNameString[0];
             this.mLevel = 3;                        //Level and Experience Points
             this.mEXPoints = 0;
             this.mType = Type.Colorless;            //Type and weakenss
