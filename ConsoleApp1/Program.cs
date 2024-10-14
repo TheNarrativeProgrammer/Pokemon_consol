@@ -20,7 +20,7 @@ namespace ConsoleApp1
             Story.PickPokemon(pokemon);
 
 
-            Battle.BattleTime(pokemon, enemy);
+            Battle.BattleTime(pokemon);
 
             Console.ReadLine();
 
