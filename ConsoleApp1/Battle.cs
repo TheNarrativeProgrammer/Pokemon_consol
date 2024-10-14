@@ -10,7 +10,6 @@ namespace ConsoleApp1
 {
     internal class Battle
     {
-
         //num attacks in battle times level
 
         //win
@@ -46,7 +45,78 @@ namespace ConsoleApp1
 
         }
 
-        public static void BattleTime(Pokemon pokemon)
+        public static Pokemon SpawnRandomWildPokemon ()
+        {
+            Random randomEnem = new Random();
+            int enemyType = randomEnem.Next(1, 3);
+            Pokemon returnWildPokemon;
+
+            switch (enemyType)
+            {
+                case 1:
+                    {
+                        Pokemon wildCaterpie = new Pokemon();
+                        returnWildPokemon = wildCaterpie;
+                        break;
+                    }
+                case 2:
+                    {
+                        Pokemon wildCaterpie = new Pokemon();
+                        returnWildPokemon = wildCaterpie;
+                        break;
+                    }
+                case 3:
+                    {
+                        Pokemon wildCaterpie = new Pokemon();
+                        returnWildPokemon = wildCaterpie;
+                        break;
+                    }
+                default:
+                    {
+                        Pokemon wildCaterpie = new Pokemon();
+                        returnWildPokemon = wildCaterpie;
+                        break;
+                    }
+            }
+            return returnWildPokemon;
+        }
+
+        public static Pokemon SpawnRivalPokemon(Pokemon PlayerPokemon)
+        {
+            Pokemon returnRivalPokemon;
+            switch (PlayerPokemon.mPokeName)
+            {
+                case "Squirtle":
+                    {
+                        Bulbasaur RivalBulasaur = new Bulbasaur("Rival Bulbasaur", "Bulbasaur");
+                        returnRivalPokemon = RivalBulasaur;
+                        break;
+                        
+                    }
+                case "Charamander":
+                    {
+                        Squirtle RivalSquirtle = new Squirtle("Rival Squirtle", "Squirtle");
+                        returnRivalPokemon = RivalSquirtle;
+                        break;
+                        
+                    }
+                case "Bulbasaur":
+                    {
+                        Charmander RivalCharamander = new Charmander("Rival Charamander", "Charamander");
+                        returnRivalPokemon = RivalCharamander;
+                        break;
+                    }
+                default:
+                    {
+                        Charmander RivalCharamander = new Charmander("Rival Charamander", "Charamander");
+                        returnRivalPokemon = RivalCharamander;
+                        break;
+                    }
+            }
+            return returnRivalPokemon;
+        }
+
+        public static Pokemon BattleTime(Pokemon Inpokemon, Pokemon InenemyPokemon, UI_Battle InUIObject)
         {
 
             Console.Clear();
@@ -73,25 +143,30 @@ namespace ConsoleApp1
                     goto battle;
 
             }
-
+            
         battle: 
 
             //Battle output
-            Console.WriteLine("Enemy: {0}", enemy.mPokeName);
-            Console.WriteLine("Enemy HP: {0}", enemy.mHP);
+            //Console.WriteLine("Enemy: {0}", enemy.mPokeName);
+            //Console.WriteLine("Enemy HP: {0}", enemy.mHP);
 
-            Console.WriteLine("=========================");
+            //Console.WriteLine("=========================");
 
-            Console.WriteLine("You: {0}", pokemon.mName);
-            Console.WriteLine("Your HP: {0}", pokemon.mHP);
+            //Console.WriteLine("You: {0}", Inpokemon.mName);
+            //Console.WriteLine("Your HP: {0}", Inpokemon.mHP);
 
-            Functions.Space();
-            Console.WriteLine("Choose an action!");
-            Functions.Space();
+            //Functions.Space();
+            //Console.WriteLine("Choose an action!");
+            //Functions.Space();
 
-            Console.WriteLine("1. Offensive");
-            Console.WriteLine("2. Accuracy");
-            Console.WriteLine("3. Attack Buff");
+            //Console.WriteLine("1. Offensive");
+            //Console.WriteLine("2. Accuracy");
+            //Console.WriteLine("3. Attack Buff");
+
+            //set UI Results box
+            InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];//"Choose an action!"
+
+            //public string battleText = string.Format("{0} won! You gained {1} xp and {2} money", pokemon.mName, moneyGained, moneyGained);
 
             if (int.TryParse(Console.ReadLine(), out moveChoice) && moveChoice > 0 && moveChoice < 4)
             {
@@ -109,14 +184,16 @@ namespace ConsoleApp1
                 case 1:
 
                     //player turn
-                    playerDamage = pokemon.AttackOffensive(enemy, 0);
+                    playerDamage = Inpokemon.AttackOffensive(enemy, 0);
                     Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, enemy.mPokeName);
                     Functions.Space();
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[1];//Tackle attack
+                    InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", playerDamage);
 
                     //check if enemy dead
                     if (enemy.mHP <= 0)
                     {
-                        Win(pokemon);
+                        Win(Inpokemon);
                         goto end;
                     }
 
@@ -125,9 +202,11 @@ namespace ConsoleApp1
                 case 2:
 
                     //player turn
-                    pokemon.AttackAccuracy(enemy);
+                    Inpokemon.AttackAccuracy(enemy);
                     Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", enemy.mPokeName);
                     Functions.Space();
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[2];//Sand attack
+                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", enemy.mPokeName);
 
                     //enemy turn
                     goto enemy;
@@ -135,9 +214,10 @@ namespace ConsoleApp1
                 case 3:
 
                     //player turn
-                    pokemon.AttackBuff();
+                    Inpokemon.AttackBuff();
                     Console.WriteLine("You use Attack Buff!");
                     Functions.Space();
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[3];//Buff (sword dance)
 
                     //enemy turn
                     goto enemy;
@@ -152,13 +232,15 @@ namespace ConsoleApp1
             {
                 case 1:
                     //enemy turn
-                    enemyDamage = pokemon.AttackOffensive(pokemon, 0);
-                    Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, pokemon.mName);
+                    enemyDamage = Inpokemon.AttackOffensive(Inpokemon, 0);
+                    Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
                     Functions.Continue();
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
+                    InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage);
 
-                    if (pokemon.mHP <= 0)
+                    if (Inpokemon.mHP <= 0)
                     {
-                        Lose(pokemon);
+                        Lose(Inpokemon);
                         goto end;
                     }
 
@@ -166,10 +248,11 @@ namespace ConsoleApp1
 
                 case 2:
                     //enemy turn
-                    enemy.AttackAccuracy(pokemon);
-                    Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", pokemon.mName);
+                    enemy.AttackAccuracy(Inpokemon);
+                    Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", Inpokemon.mName);
                     Functions.Continue();
-
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[5];//Sand attack enemy
+                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", Inpokemon.mName);
                     //player turn
                     goto battle;
 
@@ -178,6 +261,7 @@ namespace ConsoleApp1
                     enemy.AttackBuff();
                     Console.WriteLine("Enemy used Attack Buff!");
                     Functions.Continue();
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[6];//Buff (sword dance)
 
                     //enemy turn
                     goto battle;
@@ -185,6 +269,9 @@ namespace ConsoleApp1
 
         end:
             Console.WriteLine("end");
+
+
+            return enemy;
 
         }
 
