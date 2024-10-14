@@ -10,7 +10,20 @@ namespace ConsoleApp1
     internal class UI_Battle
     {
         //MEMBER VARIABLES - NON POKEMON
+        public string[] mUI_ResultsLine1_String = {"", "Choose an action!", "You won", "You lost", };
+        public string mUI_ResultsLine1;
+        public string[] mUI_ResultsLine2_String = { "", "You use Tackle Attack", "You used Sand Attack", "You used sword dance", 
+            "enemny use Tackle Attack", "Enemy used Sand Attack", "Enemy used sword dance", };
+        public string mUI_ResultsLine2;
+        public string[] mUI_ResultsLine3_String = { "", "You use Tackle Attack", "You won", "You lost", };
+        public string mUI_ResultsLine3;
 
+        public UI_Battle()
+        {
+            mUI_ResultsLine1 = mUI_ResultsLine1_String[0];
+            mUI_ResultsLine2 = mUI_ResultsLine2_String[0];
+            mUI_ResultsLine3 = mUI_ResultsLine3_String[0];
+        }
 
         //MEMBER VARIABLES - POKEMON AS STRINGS
         public string[] mUIBulbasaur_String =
@@ -331,7 +344,7 @@ namespace ConsoleApp1
             }
 
         }
-        public void FindDefendPokeArt(Pokemon InDefendingPokemon)                                                           //Art Defending
+         public void FindDefendPokeArt(Pokemon InDefendingPokemon)                                                           //Art Defending
         {
             string[] DefendPokeArt;             //stores the string of art for the defending pokemon.
             string[] DefendPokeAttackStatBox;   //stores the string of a box to house the defending pokemon health
