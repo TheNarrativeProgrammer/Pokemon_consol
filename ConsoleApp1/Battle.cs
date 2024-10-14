@@ -127,6 +127,7 @@ namespace ConsoleApp1
 
             //set enemy stats randomly
 
+            /*
             Random randomEnem = new Random();
             int enemyType = randomEnem.Next(1, 4);
 
@@ -135,14 +136,15 @@ namespace ConsoleApp1
             switch (enemyType)
             {
                 case 1:
-                    //enemy = new Squirtle("Squirtle", "Squirtle");
+                    enemy = new Squirtle("Squirtle", "Squirtle");
                     goto battle;
 
                 case 2:
-                    //Bulbasaur enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
+                    enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
                     goto battle;
 
             }
+            */
             
         battle: 
 
@@ -184,14 +186,14 @@ namespace ConsoleApp1
                 case 1:
 
                     //player turn
-                    playerDamage = Inpokemon.AttackOffensive(enemy, 0);
-                    Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, enemy.mPokeName);
+                    playerDamage = Inpokemon.AttackOffensive(InenemyPokemon, 0);
+                    Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, InenemyPokemon.mPokeName);
                     Functions.Space();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[1];//Tackle attack
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", playerDamage);
 
                     //check if enemy dead
-                    if (enemy.mHP <= 0)
+                    if (InenemyPokemon.mHP <= 0)
                     {
                         Win(Inpokemon);
                         goto end;
@@ -202,11 +204,11 @@ namespace ConsoleApp1
                 case 2:
 
                     //player turn
-                    Inpokemon.AttackAccuracy(enemy);
-                    Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", enemy.mPokeName);
+                    Inpokemon.AttackAccuracy(InenemyPokemon);
+                    Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", InenemyPokemon.mPokeName);
                     Functions.Space();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[2];//Sand attack
-                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", enemy.mPokeName);
+                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", InenemyPokemon.mPokeName);
 
                     //enemy turn
                     goto enemy;
@@ -248,7 +250,7 @@ namespace ConsoleApp1
 
                 case 2:
                     //enemy turn
-                    enemy.AttackAccuracy(Inpokemon);
+                    InenemyPokemon.AttackAccuracy(Inpokemon);
                     Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", Inpokemon.mName);
                     Functions.Continue();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[5];//Sand attack enemy
@@ -258,7 +260,7 @@ namespace ConsoleApp1
 
                 case 3:
                     //player turn
-                    enemy.AttackBuff();
+                    InenemyPokemon.AttackBuff();
                     Console.WriteLine("Enemy used Attack Buff!");
                     Functions.Continue();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[6];//Buff (sword dance)
@@ -271,7 +273,7 @@ namespace ConsoleApp1
             Console.WriteLine("end");
 
 
-            return enemy;
+            return InenemyPokemon;
 
         }
 

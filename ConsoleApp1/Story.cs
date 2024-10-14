@@ -43,9 +43,10 @@ namespace ConsoleApp1
 
         }
 
-        static public void PickPokemon(Pokemon pokemon)
+        static public Pokemon PickPokemon()
         {
             int pokemonChoice;
+            Pokemon pokemon = new Pokemon();
 
             while (true)
             {
@@ -78,30 +79,22 @@ namespace ConsoleApp1
             {
                 case 1:
                     //set stats for squirtle
-                    pokemon.mPokeName = "Squirtle";
-                    pokemon.mHP = 50;                          //Name and Health
-                    pokemon.mLevel = 5;                        //Level and Experience Points
-                    pokemon.mEXPoints = 0;
-                    pokemon.mType = Pokemon.Type.Water;                //Type and weakenss
-                    pokemon.mWeakness = Weakness.Grass;
-                    pokemon.mAttack_Damage = 5;                //Attacks   
-                    pokemon.mAttack_AccuracyDemoninator = 10;
-                    pokemon.mAttack_BuffMultiplier = 1;
-                    pokemon.mAttack_WeaknessMultiplier = 1;
-                    pokemon.mAttack_StrengthSubtractor = 0;
-                    pokemon.mDidAttackLand = true;
+                    Squirtle pokemonSquirtle = new Squirtle("Squirtle", "Squirtle");
+                    pokemon = pokemonSquirtle;
                     Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
 
                 case 2:
                     //set stats for charmander
-                    pokemon.mPokeName = "Charmander";
+                    Charmander pokemonCharmander = new Charmander("Charmander", "Charmander");
+                    pokemon = pokemonCharmander;
                     Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
 
                 case 3:
                     //set stats for bulbasaur
-                    pokemon.mPokeName = "Bulbasaur";
+                    Bulbasaur pokemonBulbasaur = new Bulbasaur("Bulbasaur", "Bulbasaur");
+                    pokemon = pokemonBulbasaur;
                     Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
             }
@@ -168,7 +161,10 @@ namespace ConsoleApp1
             Functions.Space();
             Console.WriteLine("Your pokemon is type {0} and is called {1}!", pokemon.mPokeName, pokemon.mName);
             Functions.Continue();
+
+            return pokemon;
         }
+
 
     }
 }
