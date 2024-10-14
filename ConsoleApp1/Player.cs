@@ -8,5 +8,12 @@ namespace ConsoleApp1
 {
     internal class Player
     {
+        public string playerName;
+        public int money;
+
+        public Player() {
+            this.playerName = null;
+            this.money = 0;
+        }
     }
 }

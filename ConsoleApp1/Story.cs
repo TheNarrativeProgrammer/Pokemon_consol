@@ -19,26 +19,26 @@ namespace ConsoleApp1
             Console.WriteLine("Welcome to Pokemon!");
             Functions.Space();
 
-            string playerName;
+            Player player = new Player();
 
             while (true)
             {
                 Console.WriteLine("Choose your name!");
                 //enter player name here
-                playerName = Console.ReadLine();
+                player.playerName = Console.ReadLine();
 
                 //error checks
                 //no spaces
-                if(playerName.Contains(" ")) { Functions.Error(); continue;}
+                if(player.playerName.Contains(" ")) { Functions.Error(); continue;}
                 //not too long
-                else if(playerName.Length > 20){ Functions.Error(); continue;}
+                else if(player.playerName.Length > 20){ Functions.Error(); continue;}
                 //make sure its not empty
-                else if(playerName == ""){Functions.Error(); continue;}
+                else if(player.playerName == ""){Functions.Error(); continue;}
                 break;
             }
 
             Functions.Space();
-            Console.WriteLine("Hello {0}! Lets start your adventure!", playerName);
+            Console.WriteLine("Hello {0}! Lets start your adventure!", player.playerName);
             Functions.Continue();
 
         }

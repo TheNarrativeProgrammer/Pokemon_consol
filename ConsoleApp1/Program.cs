@@ -31,7 +31,9 @@ namespace ConsoleApp1
             UI_Battle UIObject = new UI_Battle();
 
             UIObject.FindDefendPokeArt(bulbasaurEnemy);
-            UIObject.FindPlayerPokeArt(squirtlePlayer, battleObject);
+            UIObject.FindPlayerPokeArt(squirtlePlayer);
+
+            Battle.BattleTime(squirtlePlayer, bulbasaurEnemy, UIObject);
             
 
             Console.ReadLine();

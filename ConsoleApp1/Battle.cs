@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ConsoleApp1
 {
@@ -41,7 +42,7 @@ namespace ConsoleApp1
 
             //player.mMoney -= moneyGained
 
-            Console.WriteLine("{0} lost.... You gained no xp and lost {2} money", pokemon.mName, moneyGained, moneyGained);
+            Console.WriteLine("{0} lost.... You gained no xp and lost {1} money", pokemon.mName, moneyGained);
 
         }
 
@@ -122,6 +123,8 @@ namespace ConsoleApp1
             int moveChoice;
             int playerDamage;
             int enemyDamage;
+            int countAttacks = 0;
+            UI_Battle UIObject = new UI_Battle();
 
             InenemyPokemon = SpawnRandomWildPokemon();
 
@@ -186,7 +189,7 @@ namespace ConsoleApp1
                 case 1:
 
                     //player turn
-                    playerDamage = Inpokemon.AttackOffensive(InenemyPokemon, 0);
+                    playerDamage = Inpokemon.AttackOffensive(InenemyPokemon, countAttacks);
                     Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, InenemyPokemon.mPokeName);
                     Functions.Space();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[1];//Tackle attack
@@ -196,6 +199,7 @@ namespace ConsoleApp1
                     if (InenemyPokemon.mHP <= 0)
                     {
                         Win(Inpokemon);
+                        Inpokemon.mEXPoints += (Inpokemon.mLevel * countAttacks);
                         goto end;
                     }
 
@@ -240,6 +244,10 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage);
 
+
+                    UIObject.FindDefendPokeArt(InenemyPokemon);
+                    UIObject.FindPlayerPokeArt(Inpokemon);
+
                     if (Inpokemon.mHP <= 0)
                     {
                         Lose(Inpokemon);
@@ -255,6 +263,10 @@ namespace ConsoleApp1
                     Functions.Continue();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[5];//Sand attack enemy
                     InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", Inpokemon.mName);
+
+
+                    UIObject.FindDefendPokeArt(InenemyPokemon);
+                    UIObject.FindPlayerPokeArt(Inpokemon);
                     //player turn
                     goto battle;
 
@@ -264,6 +276,10 @@ namespace ConsoleApp1
                     Console.WriteLine("Enemy used Attack Buff!");
                     Functions.Continue();
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[6];//Buff (sword dance)
+
+
+                    UIObject.FindDefendPokeArt(InenemyPokemon);
+                    UIObject.FindPlayerPokeArt(Inpokemon);
 
                     //enemy turn
                     goto battle;
