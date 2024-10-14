@@ -65,11 +65,11 @@ namespace ConsoleApp1
             switch (enemyType)
             {
                 case 1:
-                    enemy = new Squirtle("Squirtle", "Squirtle");
+                    //enemy = new Squirtle("Squirtle", "Squirtle");
                     goto battle;
 
                 case 2:
-                    Bulbasaur enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
+                    //Bulbasaur enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
                     goto battle;
 
             }
