@@ -13,13 +13,14 @@ namespace ConsoleApp1
 
             //create player pokemon
             Pokemon pokemon = new Pokemon();
+            Pokemon enemy = new Pokemon();
 
             //story functions from story file
             Story.Intro();
             Story.PickPokemon(pokemon);
 
 
-            Battle.Lose(pokemon);
+            Battle.BattleTime(pokemon, enemy);
 
             Console.ReadLine();
 
