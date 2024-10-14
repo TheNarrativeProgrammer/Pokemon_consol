@@ -41,9 +41,8 @@ namespace ConsoleApp1
 
         }
 
-        static public void PickPokemon()
+        static public void PickPokemon(Pokemon pokemon)
         {
-            string pokemonName;
             int pokemonChoice;
 
             while (true)
@@ -59,7 +58,8 @@ namespace ConsoleApp1
                 if (int.TryParse(Console.ReadLine(), out pokemonChoice) && pokemonChoice > 0 && pokemonChoice < 4)
                 {
                     //enter pokemon here
-                    Console.WriteLine(" You chose ");
+                    Functions.Space();
+                    //Create new pokemon
                     break;
                 }
                 //if not, error
@@ -76,17 +76,20 @@ namespace ConsoleApp1
             {
                 case 1:
                     //set stats for squirtle
-                    Console.WriteLine(" You chose 1 ");
+                    pokemon.mPokeName = "Squirtle";
+                    Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
 
                 case 2:
                     //set stats for charmander
-                    Console.WriteLine(" You chose 2");
+                    pokemon.mPokeName = "Charmander";
+                    Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
 
                 case 3:
                     //set stats for bulbasaur
-                    Console.WriteLine(" You chose 3");
+                    pokemon.mPokeName = "Bulbasaur";
+                    Console.WriteLine("You chose {0}!", pokemon.mPokeName);
                     break;
             }
 
@@ -108,15 +111,15 @@ namespace ConsoleApp1
 
                         Console.WriteLine("Write out name:");
 
-                        pokemonName = Console.ReadLine();
+                        pokemon.mName = Console.ReadLine();
 
                         //error checks
                         //no spaces
-                        if (pokemonName.Contains(" ")) { Functions.Error(); continue; }
+                        if (pokemon.mName.Contains(" ")) { Functions.Error(); continue; }
                         //not too long
-                        else if (pokemonName.Length > 10) { Functions.Error(); continue; }
+                        else if (pokemon.mName.Length > 10) { Functions.Error(); continue; }
                         //make sure its not empty
-                        else if (pokemonName == "") { Functions.Error(); continue; }
+                        else if (pokemon.mName == "") { Functions.Error(); continue; }
 
                         break;
 
@@ -124,17 +127,17 @@ namespace ConsoleApp1
 
                         if(pokemonChoice == 1)
                         {
-                            pokemonName = "Squirtle";
+                            pokemon.mName = "Squirtle";
                             break;
                         }
                         if (pokemonChoice == 2)
                         {
-                            pokemonName = "Charmander";
+                            pokemon.mName = "Charmander";
                             break;
                         }
                         if (pokemonChoice == 3)
                         {
-                            pokemonName = "Bulbasaur";
+                            pokemon.mName = "Bulbasaur";
                             break;
                         }
                         else
@@ -149,7 +152,9 @@ namespace ConsoleApp1
                 }
                 break;
             }
-            Console.WriteLine("Your pokemon is type {0} and is called {1}!", pokemonChoice, pokemonName); 
+            Functions.Space();
+            Console.WriteLine("Your pokemon is type {0} and is called {1}!", pokemon.mPokeName, pokemon.mName);
+            Functions.Continue();
         }
 
     }

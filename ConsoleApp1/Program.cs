@@ -11,8 +11,15 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
+            //create player pokemon
+            Pokemon pokemon = new Pokemon();
+
+            //story functions from story file
             Story.Intro();
-            Story.PickPokemon();
+            Story.PickPokemon(pokemon);
+
+
+            Battle.Lose(pokemon);
 
             Console.ReadLine();
 
