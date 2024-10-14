@@ -23,6 +23,7 @@ namespace ConsoleApp1
             Fire,
             Grass,
             Colorless,
+            Electric,
         };
         public Type mType;
 
@@ -109,7 +110,26 @@ namespace ConsoleApp1
                         }
                         break;
                     }
-                default:
+                case Type.Electric:
+                    {
+                        if (InTypeOfOpponent == Type.Water)              //OPPONENT IS WEAK                                          //fire     vs  grass
+                        {
+                            this.mAttack_WeaknessMultiplier = 2;
+                        }
+                        if (InTypeOfOpponent == Type.Grass)              //OPPONENT IS STRONG                                        //fire     vs  water
+                        {
+                            this.mAttack_StrengthSubtractor = 2;
+                        }
+                        break;
+                    }
+                case Type.Colorless:
+                    {
+                        this.mAttack_WeaknessMultiplier = 2;             //OPPONENT IS WEAK                                          //Colorless  vs  all
+
+                        this.mAttack_StrengthSubtractor = 0;            //OPPONENT IS STRONG                                        //Colorless   vs  all   
+                        break;
+                    }
+                        default:
                     {
                         Console.WriteLine("In default, in attack swich statment and no weakness or strong affect to damage applied");
                         break;
@@ -150,15 +170,16 @@ namespace ConsoleApp1
 
             if (this.mDidAttackLand == true) 
             {
-            DamageToOponent = this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier;
+            DamageToOponent = ((this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier) - this.mAttack_StrengthSubtractor);
             }
             else 
             {
                 Console.WriteLine("FOR ERROR CHECKING. REMOVE AFTER GAME FINISHED. your attack missed.");
             }
 
-            //reset buff multiplier to 1
+            //reset buff multiplier to 1 and subtractor
             this.mAttack_BuffMultiplier = 1;
+            this.mAttack_StrengthSubtractor = 0;
 
             return DamageToOponent;
         }
