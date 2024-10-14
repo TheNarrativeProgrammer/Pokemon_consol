@@ -160,7 +160,7 @@ namespace ConsoleApp1
         {
             int DamageToOponent = 0;
 
-            while (InCountAttacks <= 1)                                     //check weakness only on frist attack. Weakness doesn't change, so only perform check once.
+            if (InCountAttacks <= 1)                                     //check weakness only on frist attack. Weakness doesn't change, so only perform check once.
             {
                 CalcWeakStrongDamageAffects(InDefendingPokemon.mType);
             }
@@ -181,6 +181,7 @@ namespace ConsoleApp1
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_StrengthSubtractor = 0;
 
+            Console.WriteLine("FOR ERROR CHECKING. In attack function");
             return DamageToOponent;
         }
 
