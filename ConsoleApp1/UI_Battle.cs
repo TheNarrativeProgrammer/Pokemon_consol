@@ -10,6 +10,7 @@ namespace ConsoleApp1
     {
         //MEMBER VARIABLES - NON POKEMON
 
+
         //MEMBER VARIABLES - POKEMON AS STRINGS
         public string[] mUIBulbasaur_String =
             {"                                                   /",
