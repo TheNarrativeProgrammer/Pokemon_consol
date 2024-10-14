@@ -119,33 +119,33 @@ namespace ConsoleApp1
         public static Pokemon BattleTime(Pokemon Inpokemon, Pokemon InenemyPokemon, UI_Battle InUIObject)
         {
 
-            Console.Clear();
-
             int moveChoice;
             int playerDamage;
             int enemyDamage;
 
+            InenemyPokemon = SpawnRandomWildPokemon();
+
             //set enemy stats randomly
 
-            /*
-            Random randomEnem = new Random();
-            int enemyType = randomEnem.Next(1, 4);
+        /*
+        Random randomEnem = new Random();
+        int enemyType = randomEnem.Next(1, 4);
 
-            Pokemon enemy = new Pokemon();
+        Pokemon enemy = new Pokemon();
 
-            switch (enemyType)
-            {
-                case 1:
-                    enemy = new Squirtle("Squirtle", "Squirtle");
-                    goto battle;
+        switch (enemyType)
+        {
+            case 1:
+                enemy = new Squirtle("Squirtle", "Squirtle");
+                goto battle;
 
-                case 2:
-                    enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
-                    goto battle;
+            case 2:
+                enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
+                goto battle;
 
-            }
-            */
-            
+        }
+        */
+
         battle: 
 
             //Battle output
