@@ -1,5 +1,4 @@
-﻿using ConsoleApp1;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class UI 
+    internal class UI_Battle
     {
         //MEMBER VARIABLES - NON POKEMON
 
         //MEMBER VARIABLES - POKEMON AS STRINGS
-        public string[] mUIBulbasaur_String = 
+        public string[] mUIBulbasaur_String =
             {"                                                   /",
                 "\t                        _,.------....___,.' ',.-.",
                 "\t                      ,-'          _,.--\"        |",
@@ -49,7 +48,7 @@ namespace ConsoleApp1
                 "\t ",
                 "\t ",
             };
-        public string[] mUISquirtle_String = 
+        public string[] mUISquirtle_String =
             {"                           _,........__",
                 "\t            ,-'            \"`-.",
                 "\t          ,'                   `-.",
@@ -85,7 +84,7 @@ namespace ConsoleApp1
                 "\t                                  `---.__,--.",
                 "\t",
             };
-        public string[] mUICharamander_String = 
+        public string[] mUICharamander_String =
                 {"              _.--\"\"`-..",
                 "\t            ,'          `.",
                 "\t          ,'          __  `.",
@@ -121,8 +120,5 @@ namespace ConsoleApp1
                 "\t    \"\"--'---\"\"\"\"\"'        `' '! |! /",
                 "\t                            `\" \" -'",
         };
-
     }
-
-
 }
