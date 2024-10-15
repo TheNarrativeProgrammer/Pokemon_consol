@@ -22,15 +22,14 @@ namespace ConsoleApp1
             InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//blank
             Console.Clear();
 
-
             //gain money and a level
-            Story.player.money += 10;
+            Story.player.money += 20;
             Story.pokemon.mLevel += 1;
 
             //reset all stats for next battle NOT including HP
             if (pokemon.mPokeName == "Squirtle")
             {
-                pokemon.mAttack_Damage = 7;
+                pokemon.mAttack_Damage = 11;
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
@@ -38,7 +37,7 @@ namespace ConsoleApp1
             }
             if (pokemon.mPokeName == "Bulbasaur")
             {
-                pokemon.mAttack_Damage = 6;
+                pokemon.mAttack_Damage = 11;
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
@@ -46,14 +45,14 @@ namespace ConsoleApp1
             }
             if (pokemon.mPokeName == "Charmander")
             {
-                pokemon.mAttack_Damage = 8;
+                pokemon.mAttack_Damage = 12;
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
                 pokemon.mAttack_StrengthSubtractor = 0;
             }
 
-            Console.WriteLine("{0} won! you gained 10$ and 1 level. You now have {1} in the bank and are at level {2}!", pokemon.mName, Story.player.money, Story.pokemon.mLevel);
+            Console.WriteLine("{0} won! you gained 20$ and 1 level. You now have {1} in the bank and are at level {2}!", pokemon.mName, Story.player.money, Story.pokemon.mLevel);
         }
 
         public static void Lose(Pokemon pokemon, UI_Battle InUIObject)
@@ -73,7 +72,7 @@ namespace ConsoleApp1
             if(pokemon.mPokeName == "Squirtle")
             {
                 pokemon.mHP = 38;
-                pokemon.mAttack_Damage = 7;             
+                pokemon.mAttack_Damage = 11;             
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
@@ -81,8 +80,8 @@ namespace ConsoleApp1
             }
             if(pokemon.mPokeName == "Bulbasaur")
             {
-                pokemon.mHP = 42;
-                pokemon.mAttack_Damage = 6;   
+                pokemon.mHP = 40;
+                pokemon.mAttack_Damage = 11;   
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
@@ -91,7 +90,7 @@ namespace ConsoleApp1
             if(pokemon.mPokeName == "Charmander")
             {
                 pokemon.mHP = 37;
-                pokemon.mAttack_Damage = 8;
+                pokemon.mAttack_Damage = 12;
                 pokemon.mAttack_AccuracyDemoninator = 10;
                 pokemon.mAttack_BuffMultiplier = 1;
                 pokemon.mAttack_WeaknessMultiplier = 1;
@@ -168,63 +167,28 @@ namespace ConsoleApp1
 
         public Pokemon BattleTime(Pokemon Inpokemon, UI_Battle InUIObject)
         {
+            Pokemon randomEnemy = new Pokemon();
 
-            Pokemon randomEnemy = SpawnRandomWildPokemon();
+            if (Story.pokemon.mLevel < 8)
+            {
+                randomEnemy = SpawnRandomWildPokemon();
+            }
+            else if(Story.pokemon.mLevel >= 8)
+            {
+                randomEnemy = SpawnRivalPokemon(Inpokemon);
+            }
+
             int moveChoice;
             int playerDamage;
             int enemyDamage;
             int countAttacks = 0;
-            //UI_Battle UIObject = new UI_Battle();
 
-            //InenemyPokemon = SpawnRandomWildPokemon();
             Functions.Continue();
             InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];
             InUIObject.FindDefendPokeArt(randomEnemy);
             InUIObject.FindPlayerPokeArt(Inpokemon);
 
-        //set enemy stats randomly
-
-        /*
-        Random randomEnem = new Random();
-        int enemyType = randomEnem.Next(1, 4);
-
-        Pokemon enemy = new Pokemon();
-
-        switch (enemyType)
-        {
-            case 1:
-                enemy = new Squirtle("Squirtle", "Squirtle");
-                goto battle;
-
-            case 2:
-                enemy = new Bulbasaur("Bulbasaur", "Bulbasaur");
-                goto battle;
-
-        }
-        */
-
         battle:
-
-            //Battle output
-            //Console.WriteLine("Enemy: {0}", enemy.mPokeName);
-            //Console.WriteLine("Enemy HP: {0}", enemy.mHP);
-
-            //Console.WriteLine("=========================");
-
-            //Console.WriteLine("You: {0}", Inpokemon.mName);
-            //Console.WriteLine("Your HP: {0}", Inpokemon.mHP);
-
-            //Functions.Space();
-            //Console.WriteLine("Choose an action!");
-            //Functions.Space();
-
-            //Console.WriteLine("1. Offensive");
-            //Console.WriteLine("2. Accuracy");
-            //Console.WriteLine("3. Attack Buff");
-
-            //set UI Results box
-            //InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];//"Choose an action!"
-            //reset UI
             
             Console.Clear();
             InUIObject.FindDefendPokeArt(randomEnemy);

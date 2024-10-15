@@ -15,8 +15,6 @@ namespace ConsoleApp1
         static public Pokemon pokemon = new Pokemon();
         public UI_Battle UIObject = new UI_Battle();
         static public Battle battle = new Battle();
-
-
         public void Intro()
         {
 
@@ -192,10 +190,14 @@ namespace ConsoleApp1
 
             begin:
 
-            //check if level 5
+            //check if level 8 for final battle
             if(pokemon.mLevel == 8)
             {
-                goto endgame;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("you have reached Level 8, your next battle will be the final battle against your rival Gary!");
+                Console.ForegroundColor = ConsoleColor.White;
+                Functions.Space();
+
             }
 
             while (true)
@@ -227,6 +229,13 @@ namespace ConsoleApp1
             switch (storyChoice)
             {
                 case 1:
+
+                    //check if level 8 for final battle
+                    if (pokemon.mLevel == 8)
+                    {
+                        goto finalbattle;
+                    }
+
                     Console.WriteLine("You chose battle! Begin fight!");
                     Functions.Space();
 
@@ -241,9 +250,10 @@ namespace ConsoleApp1
                         Console.WriteLine("Your bank: {0}", player.money);
                         Console.WriteLine(" --------------------------------------------------");
                         Console.WriteLine("| Welcome to the shop! What would you like?        |");
-                        Console.WriteLine("| 1. Item 1, 10$                                   |");
-                        Console.WriteLine("| 2. Item 2, 20$                                   |");
-                        Console.WriteLine("| 3. Item 3, 30$                                   |");
+                        Console.WriteLine("| 1. Heal 10 HP, 10$                               |");
+                        Console.WriteLine("| 2. Heal 20 HP, 20$                               |");
+                        Console.WriteLine("| 3. Heal 30 HP, 30$                               |");
+                        Console.WriteLine("| 4. Exit Shop                                     |");
                         Console.WriteLine(" --------------------------------------------------");
 
                         //if in between 1 and 3 and an int, continue
@@ -265,9 +275,11 @@ namespace ConsoleApp1
                         case 1:
                             if(player.money >= 10)
                             {
-                                Console.WriteLine("You bought item 1, congrats!");
+                                Console.WriteLine("You Healed 10 HP, congrats!");
                                 player.money -= 10;
+                                pokemon.mHP += 10;
                                 Console.WriteLine("Bank now at {0}", player.money);
+                                Console.WriteLine("{0} is now at {1} health", pokemon.mName, pokemon.mHP);
                                 Functions.Continue();
                             }
                             else
@@ -280,9 +292,11 @@ namespace ConsoleApp1
                         case 2:
                             if (player.money >= 20)
                             {
-                                Console.WriteLine("You bought item 2, enjoy!");
+                                Console.WriteLine("You Healed 20 HP, enjoy!");
                                 player.money -= 20;
+                                pokemon.mHP += 20;
                                 Console.WriteLine("Bank now at {0}", player.money);
+                                Console.WriteLine("{0} is now at {1} health", pokemon.mName, pokemon.mHP);
                                 Functions.Continue();
                             }
                             else
@@ -295,9 +309,11 @@ namespace ConsoleApp1
                         case 3:
                             if (player.money >= 30)
                             {
-                                Console.WriteLine("You bought item 3, enjoy!");
+                                Console.WriteLine("You Healed 30 HP, yay!");
                                 player.money -= 30;
+                                pokemon.mHP += 30;
                                 Console.WriteLine("Bank now at {0}", player.money);
+                                Console.WriteLine("{0} is now at {1} health", pokemon.mName, pokemon.mHP);
                                 Functions.Continue();
                             }
                             else
@@ -306,23 +322,43 @@ namespace ConsoleApp1
                                 Functions.Continue();
                             }
                             goto begin;
+                        case 4:
+                            goto begin;
                     }
                     goto begin;
                 case 3:
                     //regenerate HP when nap is taken
-                    pokemon.mHP = 50;
-                    Console.WriteLine("Took a nap! {0} is at full health!", pokemon.mName);
+                    Console.WriteLine("You wake up feeling well rested. You gained nothing.");
                     Functions.Continue();
 
                     goto begin;
             }
 
+        finalbattle:
+
+            Console.WriteLine("You have reached level 8, it is time to fight your rival Gary!");
+
+            battle.BattleTime(pokemon, UIObject);
+
+            //check if level 9 to see if player won
+            if (pokemon.mLevel == 9)
+            {
+                goto endgame;
+            }
+            else
+            {
+                Console.WriteLine("Try again!");
+                Functions.Continue();
+                goto finalbattle;
+            }
+
         endgame:
 
-            //Console.Clear();
-           // UI_Battle.FindPlayerPokeArt(pokemon);
-            Console.WriteLine("You won! You and your {0} named {1} left at level 8 with {2} in the bank! Congrats!", pokemon.mPokeName, pokemon.mName, player.money);
-
+            Console.Clear();
+            Functions.Space();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("You won! You and your {0} named {1} left at level 9 with {2} in the bank! Congrats!", pokemon.mPokeName, pokemon.mName, player.money);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 
