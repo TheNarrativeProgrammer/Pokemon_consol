@@ -207,124 +207,6 @@ namespace ConsoleApp1
                 "\t              `',:                 :.:' '",
         };
 
-      
-        //static public int myVar = 0;
-        //public string[] UI_pika = {"\t                             ",
-        //        "\t                                       ",
-        //        "\t\t_______________________________________",
-        //        "\t|" +myVar +"                                     |",
-        //        "\t|                                      |",
-        //        "\t|                                      |",
-        //        "\t|                                      |",
-        //        "\t|                                      |",
-        //        "\t|______________________________________|",
-        //        "\t                                         ",
-        //    };
-
-        //public string[] UI1 = {"\t\t                           ",
-        //        "\t\t                                       ",
-        //        "\t\t\t ______________________________________",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|______________________________________|",
-        //        "\t                                         ",
-        //    };
-
-        //public string[] UI2_base = {"\t\t                           ",
-        //        "\t\t                                       ",
-        //        "\t\t ______________________________________",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|                                      |",
-        //        "\t\t|______________________________________|",
-        //        "\t                                         ",
-
-        //    };
-
-        //public string[] UI_Result_Bulb = {"\t\t\t ",
-        //        "\t\t\t",
-        //        "\t\t __________________________________",
-        //        "\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|__________________________________|",
-        //        "\t\t\t",
-        //    };
-
-        //public string[] UI_Result_Squi = {"\t\t ",
-        //        "\t\t   squirtle                      ",
-        //        "\t\t\t\t __________________________________",
-        //        "\t\t\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|__________________________________|",
-        //        "\t\t",
-        //    };
-
-        //public string[] UI_Result_Char = {"\t\t ",
-        //        "\t\t   char                      ",
-        //        "\t\t __________________________________",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|__________________________________|",
-        //        "\t\t",
-        //    };
-
-        //public string[] UI_Result_Pik = {"\t\t ",
-        //        "\t\t   char                      ",
-        //        "\t\t __________________________________",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t\t|                                  |",
-        //        "\t\t\t|__________________________________|",
-        //        "\t\t",
-        //    };
-
-        //public string[] UI_Result_Cat = {"\t\t ",
-        //        "\t\t   Cat                      ",
-        //        "\t\t __________________________________",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|                                  |",
-        //        "\t\t|__________________________________|",
-        //        "\t\t",
-        //    };
 
         //FUNCTIONS
                                                                                                                                             //DEFENDING POKEMON                 
@@ -344,9 +226,7 @@ namespace ConsoleApp1
                 {
                     Console.WriteLine($"{InDefendPokeArt[i],-70}");
                 }
-
             }
-
         }
          public void FindDefendPokeArt(Pokemon InDefendingPokemon)                                                           //Art Defending
         {
@@ -420,7 +300,6 @@ namespace ConsoleApp1
                 else
                     Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\t\t" + $"{InPlayerPokeArt[i],-50}");
             }
-
         }
         public void FindPlayerPokeArt(Pokemon InPlayerPokemon)                                                                       //Art Player
         {
@@ -472,7 +351,6 @@ namespace ConsoleApp1
             }
             //pass art string as param to Print
             PrintPlayerPokeArt(PlayerPokeArt, PlayerPokeAttackStatBox, PlayerPokeResultsBox);
-
         }
 
         //UI FUNCTIONS                                                                                                                                        //STAT & ATTACK
@@ -506,7 +384,6 @@ namespace ConsoleApp1
             return UI2_Defend;
         }
 
-
         public string[] UI_Base_StatAttackBox(Pokemon InPoke)                                                               //Base Pokemon
         {
             string[] UI2_base = {"\t\t                           ",
@@ -523,7 +400,7 @@ namespace ConsoleApp1
             return UI2_base;
         }
 
-        public string[] UI_Bulb_Results()
+        public string[] UI_Bulb_Results()                                                                                   //Bulabsaur Results Box
         {
             string[] UI_Result_Bulb = {"\t\t\t ",
                 "\t\t\t",
@@ -542,7 +419,7 @@ namespace ConsoleApp1
             return UI_Result_Bulb;
         }
         
-        public string[] UI_Squi_Results()
+        public string[] UI_Squi_Results()                                                                                   //Squirtle Results Box
         {
               string[] UI_Result_Squi = {"\t\t ",
                 "\t\t                         ",
@@ -561,7 +438,7 @@ namespace ConsoleApp1
             return UI_Result_Squi;
         }
 
-        public string[] UI_Char_Results()
+        public string[] UI_Char_Results()                                                                                   //Charmander Results Box
         {
              string[] UI_Result_Char = {"\t\t ",
                 "\t\t                         ",
@@ -580,7 +457,7 @@ namespace ConsoleApp1
             return UI_Result_Char;
         }
 
-        public string[] UI_Pika_Results()
+        public string[] UI_Pika_Results()                                                                                   //Pikachu Results Box
         {
               string[] UI_Result_Pik = {"\t\t ",
                 "\t\t                         ",
@@ -599,11 +476,5 @@ namespace ConsoleApp1
             };
             return UI_Result_Pik;
         }
-
-
-
-
-
-
     }
 }

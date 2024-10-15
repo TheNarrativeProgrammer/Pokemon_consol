@@ -346,7 +346,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
                     if (randomEnemy.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[3];//attack missed
                     }
                     else
                     {
@@ -388,7 +388,7 @@ namespace ConsoleApp1
 
                     if (randomEnemy.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[3];//attack missed
                     }
                     else
                     {
@@ -415,7 +415,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = "enemy's next attack does 3x damage."; //result of action
                     if (randomEnemy.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[3];//attack missed
                     }
                     else
                     {

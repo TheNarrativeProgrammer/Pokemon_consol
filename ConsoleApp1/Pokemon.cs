@@ -65,9 +65,7 @@ namespace ConsoleApp1
         }
 
         //**FUNCTIONS**
-
         //*MODIFICATIONS TO ATTACK FUNCTIONS.
-
                                                                                                                         //WEAKNESS AND STRENGTH OF OPPONENT - change damage mods
         public void CalcWeakStrongDamageAffects(Type InTypeOfOpponent)
         {
@@ -135,8 +133,7 @@ namespace ConsoleApp1
                     }
             }
         }
-
-                                                                                                                                //ACCURACY OF ATTACK
+                                                                                                                         //ACCURACY OF ATTACK
         public virtual bool CalculateAccuracyOfAttack()
         {
             Random randomNumObject = new Random();
@@ -153,7 +150,6 @@ namespace ConsoleApp1
         }
 
         //*ATTACK FUNCTIONS*
-
                                                                                                                                 //ATTACK - DAMAGING
         public virtual int AttackOffensive(Pokemon InDefendingPokemon, int InCountAttacks)
         {
@@ -171,8 +167,6 @@ namespace ConsoleApp1
             {
             DamageToOponent = ((this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier) - this.mAttack_StrengthSubtractor);
             }
-
-
             //reset buff multiplier to 1 and subtractor
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_StrengthSubtractor = 0;
@@ -203,9 +197,6 @@ namespace ConsoleApp1
             this.mAttack_BuffMultiplier = 3;
             this.mDidAttackLand = true;
         }
-
-
-        
         
     }
 }
