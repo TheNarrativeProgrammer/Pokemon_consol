@@ -129,10 +129,12 @@ namespace ConsoleApp1
             return enemy;
         }
 
-        //for future use, rival pokemon generated based on pokemon user chooses
+        //rival pokemon generator for final battle
         public static Pokemon SpawnRivalPokemon(Pokemon PlayerPokemon)
         {
             Pokemon returnRivalPokemon;
+
+            //choses pokemon opposite of yours for harder battle
             switch (PlayerPokemon.mPokeName)
             {
                 case "Squirtle":
@@ -165,19 +167,24 @@ namespace ConsoleApp1
             return returnRivalPokemon;
         }
 
+        //battle function
         public Pokemon BattleTime(Pokemon Inpokemon, UI_Battle InUIObject)
         {
+            //pick a random enemy from list
             Pokemon randomEnemy = new Pokemon();
 
+            //if not final battle, spawn wild enemy
             if (Story.pokemon.mLevel < 8)
             {
                 randomEnemy = SpawnRandomWildPokemon();
             }
+            //if final battle, spawn rival enemy
             else if(Story.pokemon.mLevel >= 8)
             {
                 randomEnemy = SpawnRivalPokemon(Inpokemon);
             }
 
+            //initialize all the variables
             int moveChoice;
             int playerDamage;
             int enemyDamage;
@@ -194,8 +201,6 @@ namespace ConsoleApp1
             InUIObject.FindDefendPokeArt(randomEnemy);
             InUIObject.FindPlayerPokeArt(Inpokemon);
 
-            //public string battleText = string.Format("{0} won! You gained {1} xp and {2} money", pokemon.mName, moneyGained, moneyGained);
-
             if (int.TryParse(Console.ReadLine(), out moveChoice) && moveChoice > 0 && moveChoice < 4)
             {
                 goto action;
@@ -207,6 +212,8 @@ namespace ConsoleApp1
             }
 
         action:
+
+            //PLAYER TURN
             switch (moveChoice)
             {
                 case 1:
@@ -314,8 +321,10 @@ namespace ConsoleApp1
                     goto enemy;
             }
 
-        enemy:
+            //ENEMY TURN
+            enemy:
 
+            //pick random move for enemy
             Random random = new Random();
             int enemyMove = random.Next(1, 5);
 
@@ -422,6 +431,7 @@ namespace ConsoleApp1
                     goto battle;
             }
 
+        //battle is over
         end:
             Functions.Space();
             return randomEnemy;

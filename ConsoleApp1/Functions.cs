@@ -31,7 +31,6 @@ namespace ConsoleApp1
         }
 
         //continue button
-
         public static void Continue()
         {
             Console.ForegroundColor = ConsoleColor.Green;

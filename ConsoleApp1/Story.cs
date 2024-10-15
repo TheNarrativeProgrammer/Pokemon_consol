@@ -11,20 +11,18 @@ namespace ConsoleApp1
 {
     internal class Story
     {
+        //initialize all the classes
         static public Player player = new Player();
         static public Pokemon pokemon = new Pokemon();
         public UI_Battle UIObject = new UI_Battle();
         static public Battle battle = new Battle();
         public void Intro()
         {
-
-
             //Intro text here
             Console.WriteLine(" ---------------------");
             Console.WriteLine("| Welcome to Pokemon! |");
             Console.WriteLine(" ---------------------");
             Functions.Space();
-
 
             while (true)
             {
@@ -50,7 +48,6 @@ namespace ConsoleApp1
             Functions.Continue();
 
         }
-
         public void PickPokemon()
         {
             int pokemonChoice;
@@ -63,7 +60,6 @@ namespace ConsoleApp1
                 Console.WriteLine("| 2. Charmander        |");
                 Console.WriteLine("| 3. Bulbasaur         |");
                 Console.WriteLine(" ----------------------");
-
 
                 //enter pokemon choice here
 
@@ -111,7 +107,6 @@ namespace ConsoleApp1
             Functions.Continue();
 
             //name pokemon
-
             while (true)
             {
                 Console.Clear();
@@ -119,11 +114,11 @@ namespace ConsoleApp1
                 Console.WriteLine("| Name your pokemon? (Yes or No) |");
                 Console.WriteLine(" --------------------------------");
 
-
                 string ifName = Console.ReadLine().ToLower();
 
                 switch (ifName)
                 {
+                    //if they want to name it, get user input for name
                     case "yes":
 
                         Console.WriteLine("Write out name:");
@@ -140,6 +135,7 @@ namespace ConsoleApp1
 
                         break;
 
+                    //if not set to base name
                     case "no":
 
                         if(pokemonChoice == 1)
@@ -174,7 +170,6 @@ namespace ConsoleApp1
             Functions.Continue();
 
         }
-
         public void FirstBattle()
         {
             Console.WriteLine("You've run into your first battle!");
@@ -182,14 +177,12 @@ namespace ConsoleApp1
 
             battle.BattleTime(pokemon, UIObject);
         }
-
         public void StoryCont()
         {
             int storyChoice;
             int itemChoice;
 
             begin:
-
             //check if level 8 for final battle
             if(pokemon.mLevel == 8)
             {
@@ -226,8 +219,10 @@ namespace ConsoleApp1
 
             }
 
+            //check what user chose
             switch (storyChoice)
             {
+                //chose next battle
                 case 1:
 
                     //check if level 8 for final battle
@@ -243,6 +238,7 @@ namespace ConsoleApp1
 
                     goto begin;
 
+                //chose shop
                 case 2:
 
                     while (true)
@@ -256,7 +252,7 @@ namespace ConsoleApp1
                         Console.WriteLine("| 4. Exit Shop                                     |");
                         Console.WriteLine(" --------------------------------------------------");
 
-                        //if in between 1 and 3 and an int, continue
+                        //if in between 1 and 4 and an int, continue
                         if (int.TryParse(Console.ReadLine(), out itemChoice) && itemChoice > 0 && itemChoice < 5)
                         {
                             Functions.Space();
@@ -270,6 +266,7 @@ namespace ConsoleApp1
                         }
                     }
 
+                    //another switch for shop items
                     switch (itemChoice)
                     {
                         case 1:
@@ -326,8 +323,9 @@ namespace ConsoleApp1
                             goto begin;
                     }
                     goto begin;
+
+                //chose nap
                 case 3:
-                    //regenerate HP when nap is taken
                     Console.WriteLine("You wake up feeling well rested. You gained nothing.");
                     Functions.Continue();
 
@@ -338,6 +336,7 @@ namespace ConsoleApp1
 
             Console.WriteLine("You have reached level 8, it is time to fight your rival Gary!");
 
+            //battle function
             battle.BattleTime(pokemon, UIObject);
 
             //check if level 9 to see if player won
