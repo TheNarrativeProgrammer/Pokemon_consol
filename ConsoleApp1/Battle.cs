@@ -12,9 +12,16 @@ namespace ConsoleApp1
     internal class Battle
     {
 
-        public static void Win(Pokemon pokemon)
+        public static void Win(Pokemon pokemon, UI_Battle InUIObject)
         {
+            //reset UI
+            InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
+            InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[0];//blank
+            InUIObject.mUI_ResultsLine3 = "                "; //blank
+            InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//blank
+            InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//blank
             Console.Clear();
+
 
             //gain money and a level
             Story.player.money += 10;
@@ -49,8 +56,14 @@ namespace ConsoleApp1
             Console.WriteLine("{0} won! you gained 10$ and 1 level. You now have {1} in the bank and are at level {2}!", pokemon.mName, Story.player.money, Story.pokemon.mLevel);
         }
 
-        public static void Lose(Pokemon pokemon)
+        public static void Lose(Pokemon pokemon, UI_Battle InUIObject)
         {
+            //reset UI
+            InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
+            InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[0];//blank
+            InUIObject.mUI_ResultsLine3 = "                "; //blank
+            InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//blank
+            InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//blank
             Console.Clear();
 
             //lose all money
@@ -130,7 +143,7 @@ namespace ConsoleApp1
                         break;
                         
                     }
-                case "Charamander":
+                case "Charmander":
                     {
                         Squirtle RivalSquirtle = new Squirtle("Rival Squirtle", "Squirtle");
                         returnRivalPokemon = RivalSquirtle;
@@ -139,14 +152,14 @@ namespace ConsoleApp1
                     }
                 case "Bulbasaur":
                     {
-                        Charmander RivalCharamander = new Charmander("Rival Charamander", "Charamander");
-                        returnRivalPokemon = RivalCharamander;
+                        Charmander RivalCharmander = new Charmander("Rival Charmander", "Charmander");
+                        returnRivalPokemon = RivalCharmander;
                         break;
                     }
                 default:
                     {
-                        Charmander RivalCharamander = new Charmander("Rival Charamander", "Charamander");
-                        returnRivalPokemon = RivalCharamander;
+                        Charmander RivalCharmander = new Charmander("Rival Charmander", "Charmander");
+                        returnRivalPokemon = RivalCharmander;
                         break;
                     }
             }
@@ -258,10 +271,10 @@ namespace ConsoleApp1
                     InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
-                    //check if enemy dead
+                    //check WIN condition after player damages enemy
                     if (randomEnemy.mHP <= 0)
                     {
-                        Win(Inpokemon);
+                        Win(Inpokemon, InUIObject);
                         Inpokemon.mEXPoints += (Inpokemon.mLevel * countAttacks);
                         goto end;
                     }
@@ -360,7 +373,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
                     if (randomEnemy.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
                     else
                     {
@@ -372,10 +385,10 @@ namespace ConsoleApp1
                     InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
-
+                    //check LOSE condition after enemy damages player
                     if (Inpokemon.mHP <= 0)
                     {
-                        Lose(Inpokemon);
+                        Lose(Inpokemon, InUIObject);
                         goto end;
                     }
 
@@ -429,7 +442,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = "enemy's next attack does 3x damage."; //result of action
                     if (randomEnemy.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
                     else
                     {

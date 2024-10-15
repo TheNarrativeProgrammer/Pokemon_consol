@@ -100,7 +100,7 @@ namespace ConsoleApp1
                 "\t                7____,,..--'      /          |",
                 "\t                                  `---.__,--.",
             };
-        public string[] mUICharamander_String =
+        public string[] mUICharmander_String =
                 {"\t              _.--\"\"`-..",
                 "\t            ,'          `.",
                 "\t          ,'          __  `.",
@@ -353,7 +353,7 @@ namespace ConsoleApp1
             string[] DefendPokeArt;             //stores the string of art for the defending pokemon.
             string[] DefendPokeAttackStatBox;   //stores the string of a box to house the defending pokemon health
 
-            //"Squirtle","Charamander","Bulbasaur","Pigey","Pikachau",
+            //"Squirtle","Charmander","Bulbasaur","Pigey","Pikachau",
             switch (InDefendingPokemon.mPokeName)
             {
                 case "Squirtle":
@@ -362,9 +362,9 @@ namespace ConsoleApp1
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
                         break;
                     }
-                case "Charamander":
+                case "Charmander":
                     {
-                        DefendPokeArt = mUICharamander_String;
+                        DefendPokeArt = mUICharmander_String;
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
                         break;
                     }
@@ -431,7 +431,7 @@ namespace ConsoleApp1
             string[] PlayerPokeAttackStatBox;   //stores the string of a box to house the players pokemon attack options
             string[] PlayerPokeResultsBox;   //stores the string of a box to house the results of player and opponent attacks during battle
 
-            //"Squirtle","Charamander","Bulbasaur","Pigey","Pikachau",
+            //"Squirtle","Charmander","Bulbasaur","Pigey","Pikachau",
             switch (InPlayerPokemon.mPokeName)
             {
                 case "Squirtle":
@@ -443,9 +443,9 @@ namespace ConsoleApp1
                         PlayerPokeResultsBox = UI_Squi_Results();
                         break;
                     }
-                case "Charamander":
+                case "Charmander":
                     {
-                        PlayerPokeArt = mUICharamander_String;
+                        PlayerPokeArt = mUICharmander_String;
                         PlayerPokeAttackStatBox = UI_Base_StatAttackBox(InPlayerPokemon);
                         PlayerPokeResultsBox = UI_Char_Results();
                         break;

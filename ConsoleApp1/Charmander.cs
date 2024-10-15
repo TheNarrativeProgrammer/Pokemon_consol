@@ -21,7 +21,7 @@ namespace ConsoleApp1
             this.mEXPoints = 0;
             this.mType = Type.Fire;                //Type and weakenss
             this.mWeakness = Weakness.Water;
-            this.mAttack_Damage = 15;                //Attacks   
+            this.mAttack_Damage = 12;                //Attacks   
             this.mAttack_AccuracyDemoninator = 10;
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_WeaknessMultiplier = 1;

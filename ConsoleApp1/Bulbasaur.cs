@@ -14,7 +14,7 @@ namespace ConsoleApp1
         public Bulbasaur(string InName, string InPokeName)                                                   //Param constructor
         {
             //initialize member variables
-            this.mHP = 42;                          //Name and Health
+            this.mHP = 40;                          //Name and Health
             this.mName = InName;
             this.mPokeName = InPokeName;
             this.mLevel = 5;                        //Level and Experience Points

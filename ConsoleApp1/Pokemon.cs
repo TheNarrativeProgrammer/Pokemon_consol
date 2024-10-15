@@ -13,7 +13,7 @@ namespace ConsoleApp1
         //**MEMBER VARIABLES**
         public int mHP;                //Name and Health
         public string mName;
-        public string[] mPokeNameString = {"Unknown Pokemon","Squirtle","Charamander","Bulbasaur", "Caterpie", "Pikachau",};
+        public string[] mPokeNameString = {"Unknown Pokemon","Squirtle", "Charmander", "Bulbasaur", "Caterpie", "Pikachau",};
         public string mPokeName;
         public int mLevel;             //Level and Experience Points
         public int mEXPoints;
@@ -49,7 +49,7 @@ namespace ConsoleApp1
         public Pokemon()               //default constructor
         {
             //initialize member variables
-            this.mHP = 20;                          //Name and Health
+            this.mHP = 26;                          //Name and Health
             this.mName = "Wild Caterpie";
             this.mPokeName = mPokeNameString[4];
             this.mLevel = 3;                        //Level and Experience Points
