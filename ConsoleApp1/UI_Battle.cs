@@ -479,8 +479,7 @@ namespace ConsoleApp1
 
         }
 
-        //UI FUNCTIONS
-                                                                                                                                            //STAT & ATTACK
+        //UI FUNCTIONS                                                                                                                                        //STAT & ATTACK
         public string[] UI_Pika_StatAttackBox(Pokemon InPoke)                                                                     //Pikachau
         {
             string[] UI_pika = {"\t                             ",

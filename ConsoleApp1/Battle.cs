@@ -11,77 +11,118 @@ namespace ConsoleApp1
 {
     internal class Battle
     {
-        //num attacks in battle times level
 
-        //win
         public static void Win(Pokemon pokemon)
         {
             Console.Clear();
 
-            //write exp gained
-            //pokemon.mXP +=
+            //gain money and a level
+            Story.player.money += 10;
+            Story.pokemon.mLevel += 1;
 
-            //gain random amount of money
-            Random random = new Random();
-            int moneyGained = random.Next(10, 20);
+            //reset all stats for next battle NOT including HP
+            if (pokemon.mPokeName == "Squirtle")
+            {
+                pokemon.mAttack_Damage = 7;
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
+            if (pokemon.mPokeName == "Bulbasaur")
+            {
+                pokemon.mAttack_Damage = 6;
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
+            if (pokemon.mPokeName == "Charmander")
+            {
+                pokemon.mAttack_Damage = 8;
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
 
-            //player.mMoney += moneyGained
-
-            Console.WriteLine("{0} won! You gained {1} xp and {2} money", pokemon.mName, moneyGained, moneyGained);
+            Console.WriteLine("{0} won! you gained 10$ and 1 level. You now have {1} in the bank and are at level {2}!", pokemon.mName, Story.player.money, Story.pokemon.mLevel);
         }
 
         public static void Lose(Pokemon pokemon)
         {
             Console.Clear();
 
-            //no exp gained
+            //lose all money
+            Story.player.money = 0;
 
-            //lose money - add 
-            Random random = new Random();
-            int moneyGained = random.Next(10, 20);
+            //reset all stats for next battle including HP
+            if(pokemon.mPokeName == "Squirtle")
+            {
+                pokemon.mHP = 38;
+                pokemon.mAttack_Damage = 7;             
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
+            if(pokemon.mPokeName == "Bulbasaur")
+            {
+                pokemon.mHP = 42;
+                pokemon.mAttack_Damage = 6;   
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
+            if(pokemon.mPokeName == "Charmander")
+            {
+                pokemon.mHP = 37;
+                pokemon.mAttack_Damage = 8;
+                pokemon.mAttack_AccuracyDemoninator = 10;
+                pokemon.mAttack_BuffMultiplier = 1;
+                pokemon.mAttack_WeaknessMultiplier = 1;
+                pokemon.mAttack_StrengthSubtractor = 0;
+            }
 
-            //player.mMoney -= moneyGained
-
-            Console.WriteLine("{0} lost.... You gained no xp and lost {1} money", pokemon.mName, moneyGained);
+            Console.WriteLine("{0} lost....you lost all your money!", pokemon.mName);
 
         }
 
-        public static Pokemon SpawnRandomWildPokemon ()
+        //spawning a random pokemon for battle 
+        public Pokemon SpawnRandomWildPokemon ()
         {
             Random randomEnem = new Random();
-            int enemyType = randomEnem.Next(1, 3);
-            Pokemon returnWildPokemon;
+            int enemyType = randomEnem.Next(1, 5);
+            Pokemon enemy = new Pokemon();
 
             switch (enemyType)
             {
                 case 1:
                     {
-                        Pokemon wildCaterpie = new Pokemon();
-                        returnWildPokemon = wildCaterpie;
+                        enemy = new Squirtle("Enemy Squirtle", "Squirtle");
                         break;
                     }
                 case 2:
                     {
-                        Pokemon wildCaterpie = new Pokemon();
-                        returnWildPokemon = wildCaterpie;
+                        enemy = new Bulbasaur("Enemy Bulbasaur", "Bulbasaur");
                         break;
                     }
                 case 3:
                     {
-                        Pokemon wildCaterpie = new Pokemon();
-                        returnWildPokemon = wildCaterpie;
+                        enemy = new Charmander("Enemy Charamander", "Charamander");
                         break;
                     }
-                default:
+                case 4:
                     {
-                        Pokemon wildCaterpie = new Pokemon();
-                        returnWildPokemon = wildCaterpie;
+                        enemy = new Pokemon();
                         break;
                     }
             }
-            return returnWildPokemon;
+            return enemy;
         }
 
+        //for future use, rival pokemon generated based on pokemon user chooses
         public static Pokemon SpawnRivalPokemon(Pokemon PlayerPokemon)
         {
             Pokemon returnRivalPokemon;
@@ -117,9 +158,10 @@ namespace ConsoleApp1
             return returnRivalPokemon;
         }
 
-        public static Pokemon BattleTime(Pokemon Inpokemon, Pokemon InenemyPokemon, UI_Battle InUIObject)
+        public Pokemon BattleTime(Pokemon Inpokemon, UI_Battle InUIObject)
         {
 
+            Pokemon randomEnemy = SpawnRandomWildPokemon();
             int moveChoice;
             int playerDamage;
             int enemyDamage;
@@ -129,7 +171,7 @@ namespace ConsoleApp1
             //InenemyPokemon = SpawnRandomWildPokemon();
             Functions.Continue();
             InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];
-            InUIObject.FindDefendPokeArt(InenemyPokemon);
+            InUIObject.FindDefendPokeArt(randomEnemy);
             InUIObject.FindPlayerPokeArt(Inpokemon);
 
         //set enemy stats randomly
@@ -177,7 +219,7 @@ namespace ConsoleApp1
             //reset UI
             
             Console.Clear();
-            InUIObject.FindDefendPokeArt(InenemyPokemon);
+            InUIObject.FindDefendPokeArt(randomEnemy);
             InUIObject.FindPlayerPokeArt(Inpokemon);
 
             //public string battleText = string.Format("{0} won! You gained {1} xp and {2} money", pokemon.mName, moneyGained, moneyGained);
@@ -198,11 +240,11 @@ namespace ConsoleApp1
                 case 1:
 
                     //player turn
-                    playerDamage = Inpokemon.AttackOffensive(InenemyPokemon, countAttacks);
-                    Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, InenemyPokemon.mPokeName);
+                    playerDamage = Inpokemon.AttackOffensive(randomEnemy, countAttacks);
+                    Console.WriteLine("You use Attack Offsensive and did {0} damage to {1}!", playerDamage, randomEnemy.mPokeName);
                     Functions.Space();
                     //Update enemy stat - health
-                    InenemyPokemon.mHP-=playerDamage;
+                    randomEnemy.mHP-=playerDamage;
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[1];//Tackle attack
@@ -217,12 +259,12 @@ namespace ConsoleApp1
                     }
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
-                    
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    Console.Clear();
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
                     //check if enemy dead
-                    if (InenemyPokemon.mHP <= 0)
+                    if (randomEnemy.mHP <= 0)
                     {
                         Win(Inpokemon);
                         Inpokemon.mEXPoints += (Inpokemon.mLevel * countAttacks);
@@ -236,19 +278,19 @@ namespace ConsoleApp1
                 case 2:
 
                     //player turn
-                    Inpokemon.AttackAccuracy(InenemyPokemon);
-                    Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", InenemyPokemon.mPokeName);
+                    Inpokemon.AttackAccuracy(randomEnemy);
+                    Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", randomEnemy.mPokeName);
                     
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[2];//Sand attack
-                    if (InenemyPokemon.mAttack_AccuracyDemoninator <= 4)
+                    if (randomEnemy.mAttack_AccuracyDemoninator <= 4)
                     {
-                        InUIObject.mUI_ResultsLine3 = string.Format("Attack had on effect on {0}", InenemyPokemon.mPokeName); //result of action
+                        InUIObject.mUI_ResultsLine3 = string.Format("Attack had on effect on {0}", randomEnemy.mPokeName); //result of action
                     }
                     else
                     {
-                        InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 1!", InenemyPokemon.mPokeName); //result of action
+                        InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 1!", randomEnemy.mPokeName); //result of action
                     }
                     if (Inpokemon.mDidAttackLand == false)
                     {
@@ -261,7 +303,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
                     Functions.Continue();
@@ -290,7 +332,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
                     Functions.Continue();
@@ -310,7 +352,7 @@ namespace ConsoleApp1
                 case 1:
 
                     //enemy turn
-                    enemyDamage = InenemyPokemon.AttackOffensive(Inpokemon, 0);
+                    enemyDamage = randomEnemy.AttackOffensive(Inpokemon, 0);
                     Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
                     Functions.Space();
                     //Update enemy stat - health
@@ -319,7 +361,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
-                    if (InenemyPokemon.mDidAttackLand == false)
+                    if (randomEnemy.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
                     }
@@ -330,7 +372,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
 
@@ -345,7 +387,7 @@ namespace ConsoleApp1
                 case 2:
 
                     //enemy turn
-                    enemyDamage = InenemyPokemon.AttackOffensive(Inpokemon, 0);
+                    enemyDamage = randomEnemy.AttackOffensive(Inpokemon, 0);
                     Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
                     Functions.Space();
                     //Update enemy stat - health
@@ -354,7 +396,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
-                    if (InenemyPokemon.mDidAttackLand == false)
+                    if (randomEnemy.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
                     }
@@ -365,7 +407,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
 
@@ -379,7 +421,7 @@ namespace ConsoleApp1
 
                 case 3:
                     //enemy turn
-                    InenemyPokemon.AttackAccuracy(Inpokemon);
+                    randomEnemy.AttackAccuracy(Inpokemon);
                     Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", Inpokemon.mName);
                     Functions.Space();
 
@@ -396,7 +438,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 1!", Inpokemon.mPokeName); //result of action
                     }
 
-                    if (InenemyPokemon.mDidAttackLand == false)
+                    if (randomEnemy.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
@@ -407,7 +449,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
                     //player turn
@@ -416,14 +458,14 @@ namespace ConsoleApp1
                 case 4:
 
                     //enemy turn
-                    InenemyPokemon.AttackBuff();
+                    randomEnemy.AttackBuff();
                     Console.WriteLine("You use Attack Buff!");
                     Functions.Space();
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[6];//Buff (sword dance) - enemy
                     InUIObject.mUI_ResultsLine3 = "enemy's next attack does 3x damage."; //result of action
-                    if (InenemyPokemon.mDidAttackLand == false)
+                    if (randomEnemy.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
                     }
@@ -434,7 +476,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
-                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindDefendPokeArt(randomEnemy);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
                     //enemy turn
@@ -442,10 +484,8 @@ namespace ConsoleApp1
             }
 
         end:
-            Console.WriteLine("end");
-
-
-            return InenemyPokemon;
+            Functions.Space();
+            return randomEnemy;
 
         }
 

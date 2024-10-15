@@ -11,7 +11,11 @@ namespace ConsoleApp1
 {
     internal class Story
     {
-        Player player = new Player();
+        static public Player player = new Player();
+        static public Pokemon pokemon = new Pokemon();
+        public UI_Battle UIObject = new UI_Battle();
+        static public Battle battle = new Battle();
+
 
         public void Intro()
         {
@@ -49,10 +53,9 @@ namespace ConsoleApp1
 
         }
 
-        static public Pokemon PickPokemon()
+        public void PickPokemon()
         {
             int pokemonChoice;
-            Pokemon pokemon = new Pokemon();
 
             while (true)
             {
@@ -172,7 +175,14 @@ namespace ConsoleApp1
             Console.WriteLine("Your pokemon is type {0} and is called {1}!", pokemon.mPokeName, pokemon.mName);
             Functions.Continue();
 
-            return pokemon;
+        }
+
+        public void FirstBattle()
+        {
+            Console.WriteLine("You've run into your first battle!");
+            Functions.Space();
+
+            battle.BattleTime(pokemon, UIObject);
         }
 
         public void StoryCont()
@@ -181,6 +191,13 @@ namespace ConsoleApp1
             int itemChoice;
 
             begin:
+
+            //check if level 5
+            if(pokemon.mLevel == 8)
+            {
+                goto endgame;
+            }
+
             while (true)
             {
 
@@ -210,7 +227,10 @@ namespace ConsoleApp1
             switch (storyChoice)
             {
                 case 1:
-                    //Battle.BattleTime(squirtlePlayer, bulbasaurEnemy, UIObject);
+                    Console.WriteLine("You chose battle! Begin fight!");
+                    Functions.Space();
+
+                    battle.BattleTime(pokemon, UIObject);
 
                     goto begin;
 
@@ -223,7 +243,7 @@ namespace ConsoleApp1
                         Console.WriteLine("| Welcome to the shop! What would you like?        |");
                         Console.WriteLine("| 1. Item 1, 10$                                   |");
                         Console.WriteLine("| 2. Item 2, 20$                                   |");
-                        Console.WriteLine("| 3. Item 3, 50$                                   |");
+                        Console.WriteLine("| 3. Item 3, 30$                                   |");
                         Console.WriteLine(" --------------------------------------------------");
 
                         //if in between 1 and 3 and an int, continue
@@ -243,9 +263,11 @@ namespace ConsoleApp1
                     switch (itemChoice)
                     {
                         case 1:
-                            if(player.money > 10)
+                            if(player.money >= 10)
                             {
                                 Console.WriteLine("You bought item 1, congrats!");
+                                player.money -= 10;
+                                Console.WriteLine("Bank now at {0}", player.money);
                                 Functions.Continue();
                             }
                             else
@@ -256,9 +278,11 @@ namespace ConsoleApp1
                             goto begin;
 
                         case 2:
-                            if (player.money > 20)
+                            if (player.money >= 20)
                             {
                                 Console.WriteLine("You bought item 2, enjoy!");
+                                player.money -= 20;
+                                Console.WriteLine("Bank now at {0}", player.money);
                                 Functions.Continue();
                             }
                             else
@@ -269,9 +293,11 @@ namespace ConsoleApp1
                             goto begin;
 
                         case 3:
-                            if (player.money > 50)
+                            if (player.money >= 30)
                             {
                                 Console.WriteLine("You bought item 3, enjoy!");
+                                player.money -= 30;
+                                Console.WriteLine("Bank now at {0}", player.money);
                                 Functions.Continue();
                             }
                             else
@@ -283,16 +309,21 @@ namespace ConsoleApp1
                     }
                     goto begin;
                 case 3:
-                    Console.WriteLine("Took a nap! That did nothing!");
+                    //regenerate HP when nap is taken
+                    pokemon.mHP = 50;
+                    Console.WriteLine("Took a nap! {0} is at full health!", pokemon.mName);
                     Functions.Continue();
 
                     goto begin;
             }
 
-            
+        endgame:
+
+            //Console.Clear();
+           // UI_Battle.FindPlayerPokeArt(pokemon);
+            Console.WriteLine("You won! You and your {0} named {1} left at level 8 with {2} in the bank! Congrats!", pokemon.mPokeName, pokemon.mName, player.money);
 
         }
-
-
     }
+
 }

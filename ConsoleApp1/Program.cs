@@ -11,16 +11,14 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            ////create player pokemon
-            //Pokemon pokemon = new Pokemon();
-            //Pokemon enemy = new Pokemon();
-
-            ////story functions from story file
-            //Story.Intro();
-            //Story.PickPokemon(pokemon);
+            Story story = new Story();
+            story.Intro();
+            story.PickPokemon();
+            story.FirstBattle();
+            story.StoryCont();
 
 
-
+/*
             //test UI
             Squirtle squirtlePlayer = new Squirtle("Some Name", "Squirtle");
             Bulbasaur bulbasaurEnemy = new Bulbasaur("Enemy Bulba", "Bulbasaur");
@@ -39,8 +37,8 @@ namespace ConsoleApp1
 
             UIObject.FindDefendPokeArt(squirtleEnemy);
             UIObject.FindPlayerPokeArt(CharPlayer);
+*/
 
-            Battle.BattleTime(CharPlayer, squirtleEnemy, UIObject);
             
 
             Console.ReadLine();

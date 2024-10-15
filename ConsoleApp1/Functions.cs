@@ -35,7 +35,7 @@ namespace ConsoleApp1
         public static void Continue()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("[press enter to continue]");
+            Console.WriteLine("[press any key to continue]");
             Console.ForegroundColor = ConsoleColor.White;
             //read key reads any key press
             Console.ReadKey();
