@@ -93,27 +93,22 @@ namespace ConsoleApp1
         public Pokemon SpawnRandomWildPokemon ()
         {
             Random randomEnem = new Random();
-            int enemyType = randomEnem.Next(1, 5);
+            int enemyType = randomEnem.Next(1, 3);
             Pokemon enemy = new Pokemon();
 
             switch (enemyType)
             {
                 case 1:
                     {
-                        enemy = new Squirtle("Enemy Squirtle", "Squirtle");
+                        enemy = new Pikachu("Enemy Pikachu", "Pikachau");
                         break;
                     }
                 case 2:
                     {
-                        enemy = new Bulbasaur("Enemy Bulbasaur", "Bulbasaur");
+                        enemy = new Pokemon();
                         break;
                     }
-                case 3:
-                    {
-                        enemy = new Charmander("Enemy Charamander", "Charamander");
-                        break;
-                    }
-                case 4:
+                default:
                     {
                         enemy = new Pokemon();
                         break;
@@ -349,40 +344,7 @@ namespace ConsoleApp1
 
             switch (enemyMove)
             {
-                case 1:
-
-                    //enemy turn
-                    enemyDamage = randomEnemy.AttackOffensive(Inpokemon, 0);
-                    Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
-                    Functions.Space();
-                    //Update enemy stat - health
-                    Inpokemon.mHP -= enemyDamage;
-                    //update UI lines
-                    InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
-                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
-                    InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
-                    if (randomEnemy.mDidAttackLand == false)
-                    {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
-                    }
-                    else
-                    {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
-                    }
-                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
-                    //reset UI
-                    Console.Clear();
-                    InUIObject.FindDefendPokeArt(randomEnemy);
-                    InUIObject.FindPlayerPokeArt(Inpokemon);
-
-
-                    if (Inpokemon.mHP <= 0)
-                    {
-                        Lose(Inpokemon);
-                        goto end;
-                    }
-
-                    goto battle;
+                case 1: //case 1 and case 2 are enemy tackle to give a higher chance enemy will attack.
 
                 case 2:
 
