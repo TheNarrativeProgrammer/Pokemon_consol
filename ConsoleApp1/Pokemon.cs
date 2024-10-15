@@ -186,13 +186,17 @@ namespace ConsoleApp1
         }
 
                                                                                                                                 //ATTACK - ACCURACY
-        public virtual void AttackAccuracy(Pokemon InOpponentPokemon)
+        public virtual void AttackAccuracy(Pokemon InPokemon)
         {
              this.mDidAttackLand = CalculateAccuracyOfAttack();                 //Call CalculateAccuracyOfAttack to determine if attack landed. Damage is 0 if attack missed (false)
 
             if (this.mDidAttackLand == true)
             {
-                InOpponentPokemon.mAttack_AccuracyDemoninator -= 2;             //Change the demoninator of opponents accuracy calulation, making a miss more likely.
+                InPokemon.mAttack_AccuracyDemoninator -= 1;             //Change the demoninator of opponents accuracy calulation, making a miss more likely.
+                if(InPokemon.mAttack_AccuracyDemoninator<=4)
+                {
+                    InPokemon.mAttack_AccuracyDemoninator = 4;          //cap the affect on accuracy at a demoninator of 4
+                }
             }
             else
             {

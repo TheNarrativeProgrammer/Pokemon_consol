@@ -14,14 +14,14 @@ namespace ConsoleApp1
         public Bulbasaur(string InName, string InPokeName)                                                   //Param constructor
         {
             //initialize member variables
-            this.mHP = 50;                          //Name and Health
+            this.mHP = 42;                          //Name and Health
             this.mName = InName;
             this.mPokeName = InPokeName;
             this.mLevel = 5;                        //Level and Experience Points
             this.mEXPoints = 0;
             this.mType = Type.Grass;                //Type and weakenss
             this.mWeakness = Weakness.Fire;
-            this.mAttack_Damage = 5;                //Attacks   
+            this.mAttack_Damage = 6;                //Attacks   
             this.mAttack_AccuracyDemoninator = 10;
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_WeaknessMultiplier = 1;

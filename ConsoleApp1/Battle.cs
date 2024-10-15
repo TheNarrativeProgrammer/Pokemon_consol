@@ -175,6 +175,7 @@ namespace ConsoleApp1
             //set UI Results box
             //InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];//"Choose an action!"
             //reset UI
+            
             Console.Clear();
             InUIObject.FindDefendPokeArt(InenemyPokemon);
             InUIObject.FindPlayerPokeArt(Inpokemon);
@@ -214,6 +215,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
                     
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -240,8 +242,14 @@ namespace ConsoleApp1
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[2];//Sand attack
-                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", InenemyPokemon.mPokeName); //result of action
-                    
+                    if (InenemyPokemon.mAttack_AccuracyDemoninator <= 4)
+                    {
+                        InUIObject.mUI_ResultsLine3 = string.Format("Attack had on effect on {0}", InenemyPokemon.mPokeName); //result of action
+                    }
+                    else
+                    {
+                        InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 1!", InenemyPokemon.mPokeName); //result of action
+                    }
                     if (Inpokemon.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
@@ -250,6 +258,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -278,7 +287,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
-                    
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[0];//clear prompt
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -294,14 +303,14 @@ namespace ConsoleApp1
         enemy:
 
             Random random = new Random();
-            int enemyMove = random.Next(1, 4);
+            int enemyMove = random.Next(1, 5);
 
             switch (enemyMove)
             {
                 case 1:
 
                     //enemy turn
-                    enemyDamage = Inpokemon.AttackOffensive(Inpokemon, 0);
+                    enemyDamage = InenemyPokemon.AttackOffensive(Inpokemon, 0);
                     Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
                     Functions.Space();
                     //Update enemy stat - health
@@ -310,15 +319,15 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
-                    if (Inpokemon.mDidAttackLand == false)
+                    if (InenemyPokemon.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
                     }
                     else
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
-                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -334,6 +343,41 @@ namespace ConsoleApp1
                     goto battle;
 
                 case 2:
+
+                    //enemy turn
+                    enemyDamage = InenemyPokemon.AttackOffensive(Inpokemon, 0);
+                    Console.WriteLine("Enemy used Attack Offsensive and did {0} damage to {1}!", enemyDamage, Inpokemon.mName);
+                    Functions.Space();
+                    //Update enemy stat - health
+                    Inpokemon.mHP -= enemyDamage;
+                    //update UI lines
+                    InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
+                    InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[4];//Tackle attack - enemy
+                    InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
+                    if (InenemyPokemon.mDidAttackLand == false)
+                    {
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
+                    }
+                    else
+                    {
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
+                    }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
+                    //reset UI
+                    Console.Clear();
+                    InUIObject.FindDefendPokeArt(InenemyPokemon);
+                    InUIObject.FindPlayerPokeArt(Inpokemon);
+
+
+                    if (Inpokemon.mHP <= 0)
+                    {
+                        Lose(Inpokemon);
+                        goto end;
+                    }
+
+                    goto battle;
+
+                case 3:
                     //enemy turn
                     InenemyPokemon.AttackAccuracy(Inpokemon);
                     Console.WriteLine("Enemy used Attack Accuracy and decreased your {0} accuracy by 2!", Inpokemon.mName);
@@ -342,9 +386,17 @@ namespace ConsoleApp1
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[5];//Sand attack enemy
-                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 2!", Inpokemon.mPokeName); //result of action
+                    
+                    if(Inpokemon.mAttack_AccuracyDemoninator<=4)
+                    {
+                        InUIObject.mUI_ResultsLine3 = string.Format("attack had no effect on {0}", Inpokemon.mPokeName); //result of action
+                    }
+                    else
+                    {
+                    InUIObject.mUI_ResultsLine3 = string.Format("and decreased {0} accuracy by 1!", Inpokemon.mPokeName); //result of action
+                    }
 
-                    if (Inpokemon.mDidAttackLand == false)
+                    if (InenemyPokemon.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
@@ -352,7 +404,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
-                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -361,7 +413,7 @@ namespace ConsoleApp1
                     //player turn
                     goto battle;
 
-                case 3:
+                case 4:
 
                     //enemy turn
                     InenemyPokemon.AttackBuff();
@@ -371,7 +423,7 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[6];//Buff (sword dance) - enemy
                     InUIObject.mUI_ResultsLine3 = "enemy's next attack does 3x damage."; //result of action
-                    if (Inpokemon.mDidAttackLand == false)
+                    if (InenemyPokemon.mDidAttackLand == false)
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
                     }
@@ -379,7 +431,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
-                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine5_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
