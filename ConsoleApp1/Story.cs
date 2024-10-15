@@ -257,7 +257,7 @@ namespace ConsoleApp1
                         Console.WriteLine(" --------------------------------------------------");
 
                         //if in between 1 and 3 and an int, continue
-                        if (int.TryParse(Console.ReadLine(), out itemChoice) && itemChoice > 0 && itemChoice < 4)
+                        if (int.TryParse(Console.ReadLine(), out itemChoice) && itemChoice > 0 && itemChoice < 5)
                         {
                             Functions.Space();
                             break;
