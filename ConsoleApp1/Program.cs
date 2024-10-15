@@ -25,15 +25,22 @@ namespace ConsoleApp1
             Squirtle squirtlePlayer = new Squirtle("Some Name", "Squirtle");
             Bulbasaur bulbasaurEnemy = new Bulbasaur("Enemy Bulba", "Bulbasaur");
 
+            Bulbasaur BulbaPlayer = new Bulbasaur("Enemy Bulba", "Bulbasaur");
+            Squirtle squirtleEnemy = new Squirtle("Some Name", "Squirtle");
+
+            Charmander CharPlayer = new Charmander("Player Char", "Charamander");
+            Pokemon CaterpieEnemy = new Pokemon();
+
+
             //Battle.BattleTime(squirtlePlayer);
             Battle battleObject = new Battle();
 
             UI_Battle UIObject = new UI_Battle();
 
-            UIObject.FindDefendPokeArt(bulbasaurEnemy);
-            UIObject.FindPlayerPokeArt(squirtlePlayer);
+            UIObject.FindDefendPokeArt(CaterpieEnemy);
+            UIObject.FindPlayerPokeArt(CharPlayer);
 
-            Battle.BattleTime(squirtlePlayer, bulbasaurEnemy, UIObject);
+            Battle.BattleTime(CharPlayer, CaterpieEnemy, UIObject);
             
 
             Console.ReadLine();

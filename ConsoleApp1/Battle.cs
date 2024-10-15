@@ -312,12 +312,13 @@ namespace ConsoleApp1
                     InUIObject.mUI_ResultsLine3 = string.Format("and did {0} damage", enemyDamage); //result of action
                     if (Inpokemon.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
                     else
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -345,12 +346,13 @@ namespace ConsoleApp1
 
                     if (Inpokemon.mDidAttackLand == false)
                     {
-                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[1];//attack missed
+                        InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[4];//attack missed
                     }
                     else
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
@@ -377,6 +379,7 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    InUIObject.mUI_ResultsLine5 = InUIObject.mUI_ResultsLine1_String[1];//Prompt player to chose action
                     //reset UI
                     Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);

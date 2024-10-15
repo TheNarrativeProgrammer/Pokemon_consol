@@ -16,8 +16,10 @@ namespace ConsoleApp1
             "enemny use Tackle Attack", "Enemy used Sand Attack", "Enemy used sword dance", };
         public string mUI_ResultsLine2;
         public string mUI_ResultsLine3;//string isn't a string array. Battle class sets this string
-        public string[] mUI_ResultsLine4_String = { "                    ", "Your attack missed", "Your attack did 3x damage", "", };
+        public string[] mUI_ResultsLine4_String = { "                    ", "Your attack missed", "Your attack did 3x damage", "Their attack missed", "Their attack did 3x damage", };
         public string mUI_ResultsLine4;
+        public string[] mUI_ResultsLine5_String = { "           ", "Choose an action!", "The enemy fainted.", "               ", };
+        public string mUI_ResultsLine5;
 
         public UI_Battle()
         {
@@ -25,6 +27,7 @@ namespace ConsoleApp1
             mUI_ResultsLine2 = mUI_ResultsLine2_String[0];
             mUI_ResultsLine3 = "                     ";
             mUI_ResultsLine4 = mUI_ResultsLine4_String[0];
+            mUI_ResultsLine5 = mUI_ResultsLine5_String[0];
         }
 
         //MEMBER VARIABLES - POKEMON AS STRINGS
@@ -375,12 +378,14 @@ namespace ConsoleApp1
                     {
                         DefendPokeArt = mUICaterpie_String;
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
+                        Console.WriteLine("print caterpie");
                         break;
                     }
                 case "Pikachau":
                     {
                         DefendPokeArt = mUIPikachu_String;
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
+                        Console.WriteLine("print pika");
                         break;
                     }
                 default:
@@ -497,7 +502,7 @@ namespace ConsoleApp1
             string[] UI2_Defend = {"\t\t                           ",
                 "\t\t  " + InPoke.mPokeName + "             ",
                 "\t\t ______________________________________",
-                "\t\t| Health " + InPoke.mHP + "            |",
+                "\t\t| Health " + InPoke.mHP + "                            |",
                 "\t\t|                                      |",
                 "\t\t|                                      |",
                 "\t\t|______________________________________|",
@@ -512,7 +517,7 @@ namespace ConsoleApp1
             string[] UI2_base = {"\t\t                           ",
                 "\t\t  " + InPoke.mPokeName + "             ",
                 "\t\t ______________________________________",
-                "\t\t| Health " + InPoke.mHP + "            |",
+                "\t\t| Health " + InPoke.mHP + "                            |",
                 "\t\t|                                      |",
                 "\t\t| 1. Tackle                            |",
                 "\t\t| 2. Sand Attack                       |",
@@ -528,21 +533,20 @@ namespace ConsoleApp1
             string[] UI_Result_Bulb = {"\t\t\t ",
                 "\t\t\t",
                 "\t\t __________________________________",
-                "\t\t|" + mUI_ResultsLine1 + "|",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|__________________________________|",
+                "\t\t|" + mUI_ResultsLine1 +"            ",
+                "\t\t\t|"+mUI_ResultsLine2 +"            ",
+                "\t\t\t|"+mUI_ResultsLine3 +"            ",
+                "\t\t\t|"+mUI_ResultsLine4 +"            ",
+                "\t\t|"+mUI_ResultsLine5 +"              ",
+                "\t\t|                                   ",
+                "\t\t|                                   ",
+                "\t\t|                                   ",
+                "\t\t\t|__________________________________",
                 "\t\t\t",
             };
             return UI_Result_Bulb;
         }
-
+        
         public string[] UI_Squi_Results()
         {
               string[] UI_Result_Squi = {"\t\t ",
@@ -551,9 +555,8 @@ namespace ConsoleApp1
                 "\t\t|"+ mUI_ResultsLine1 +"            ",
                 "\t\t|"+mUI_ResultsLine2 +"             ",
                 "\t\t|"+mUI_ResultsLine3 +"             ",
-                "\t\t|                                  ",
-                "\t\t|                                  ",
-                "\t\t|                                  ",
+                "\t\t|"+mUI_ResultsLine4 +"             ",
+                "\t\t|"+mUI_ResultsLine5 +"             ",
                 "\t\t|                                  ",
                 "\t\t|                                  ",
                 "\t\t|                                  ",
@@ -568,16 +571,15 @@ namespace ConsoleApp1
              string[] UI_Result_Char = {"\t\t ",
                 "\t\t                         ",
                 "\t\t __________________________________",
-                "\t\t|" + mUI_ResultsLine1 +"  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|                                  |",
-                "\t\t\t|__________________________________|",
+                "\t\t|" + mUI_ResultsLine1 +"            ",
+                "\t\t|"+mUI_ResultsLine2 +"              ",
+                "\t\t|"+mUI_ResultsLine3 +"              ",
+                "\t\t\t|"+mUI_ResultsLine4 +"              ",
+                "\t\t\t|"+mUI_ResultsLine5 +"              ",
+                "\t\t\t|                                  ",
+                "\t\t\t|                                  ",
+                "\t\t\t|                                  ",
+                "\t\t\t|__________________________________",
                 "\t\t",
             };
             return UI_Result_Char;

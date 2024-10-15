@@ -51,7 +51,7 @@ namespace ConsoleApp1
             //initialize member variables
             this.mHP = 20;                          //Name and Health
             this.mName = "Wild Caterpie";
-            this.mPokeName = mPokeNameString[5];
+            this.mPokeName = mPokeNameString[4];
             this.mLevel = 3;                        //Level and Experience Points
             this.mEXPoints = 0;
             this.mType = Type.Grass;            //Type and weakenss
