@@ -116,10 +116,10 @@ namespace ConsoleApp1
                         {
                             this.mAttack_WeaknessMultiplier = 2;
                         }
-                        if (InTypeOfOpponent == Type.Grass)              //OPPONENT IS STRONG                                        //fire     vs  water
-                        {
-                            this.mAttack_StrengthSubtractor = 2;
-                        }
+                        //if (InTypeOfOpponent == Type.Grass)              //OPPONENT IS STRONG                                        //fire     vs  water
+                        //{
+                        //    this.mAttack_StrengthSubtractor = 2;
+                        //}
                         break;
                     }
                 case Type.Colorless:

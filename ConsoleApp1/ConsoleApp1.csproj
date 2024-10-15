@@ -47,6 +47,7 @@
     <Compile Include="Bulbasaur.cs" />
     <Compile Include="Charmander.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="Pikachu.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Pokemon.cs" />
     <Compile Include="Program.cs" />
