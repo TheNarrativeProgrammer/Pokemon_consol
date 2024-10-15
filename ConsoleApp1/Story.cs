@@ -5,25 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using static ConsoleApp1.Pokemon;
 using System.Xml.Linq;
+using System.Threading;
 
 namespace ConsoleApp1
 {
     internal class Story
     {
+        Player player = new Player();
 
-
-        static public void Intro()
+        public void Intro()
         {
 
+
             //Intro text here
-            Console.WriteLine("Welcome to Pokemon!");
+            Console.WriteLine(" ---------------------");
+            Console.WriteLine("| Welcome to Pokemon! |");
+            Console.WriteLine(" ---------------------");
             Functions.Space();
 
-            Player player = new Player();
 
             while (true)
             {
-                Console.WriteLine("Choose your name!");
+                Console.WriteLine(" -------------------");
+                Console.WriteLine("| Choose your name! |");
+                Console.WriteLine(" -------------------");
+
                 //enter player name here
                 player.playerName = Console.ReadLine();
 
@@ -50,17 +56,19 @@ namespace ConsoleApp1
 
             while (true)
             {
-                Console.WriteLine("Choose your pokemon:");
-                Console.WriteLine("1. Squirtle");
-                Console.WriteLine("2. Charmander");
-                Console.WriteLine("3. Bulbasaur");
+                Console.WriteLine(" ----------------------");
+                Console.WriteLine("| Choose your pokemon: |");
+                Console.WriteLine("| 1. Squirtle          |");
+                Console.WriteLine("| 2. Charmander        |");
+                Console.WriteLine("| 3. Bulbasaur         |");
+                Console.WriteLine(" ----------------------");
+
 
                 //enter pokemon choice here
 
                 //if in between 1 and 3 and an int, continue
                 if (int.TryParse(Console.ReadLine(), out pokemonChoice) && pokemonChoice > 0 && pokemonChoice < 4)
                 {
-                    //enter pokemon here
                     Functions.Space();
                     //Create new pokemon
                     break;
@@ -106,8 +114,10 @@ namespace ConsoleApp1
             while (true)
             {
                 Console.Clear();
+                Console.WriteLine(" --------------------------------");
+                Console.WriteLine("| Name your pokemon? (Yes or No) |");
+                Console.WriteLine(" --------------------------------");
 
-                Console.WriteLine("Name your pokemon? (Yes or No)");
 
                 string ifName = Console.ReadLine().ToLower();
 
@@ -163,6 +173,124 @@ namespace ConsoleApp1
             Functions.Continue();
 
             return pokemon;
+        }
+
+        public void StoryCont()
+        {
+            int storyChoice;
+            int itemChoice;
+
+            begin:
+            while (true)
+            {
+
+                Console.WriteLine(" --------------------------------------------------");
+                Console.WriteLine("| Back on your journey! What would you like to do? |");
+                Console.WriteLine("| 1. Next Battle                                   |");
+                Console.WriteLine("| 2. Go to shop                                    |");
+                Console.WriteLine("| 3. Take a nap                                    |");
+                Console.WriteLine(" --------------------------------------------------");
+
+                //if in between 1 and 3 and an int, continue
+                if (int.TryParse(Console.ReadLine(), out storyChoice) && storyChoice > 0 && storyChoice < 4)
+                {
+                    Functions.Space();
+                    //Create new pokemon
+                    break;
+                }
+                //if not, error
+                else
+                {
+                    Functions.Error();
+                    continue;
+                }
+
+            }
+
+            switch (storyChoice)
+            {
+                case 1:
+                    //Battle.BattleTime(squirtlePlayer, bulbasaurEnemy, UIObject);
+
+                    goto begin;
+
+                case 2:
+
+                    while (true)
+                    {
+                        Console.WriteLine("Your bank: {0}", player.money);
+                        Console.WriteLine(" --------------------------------------------------");
+                        Console.WriteLine("| Welcome to the shop! What would you like?        |");
+                        Console.WriteLine("| 1. Item 1, 10$                                   |");
+                        Console.WriteLine("| 2. Item 2, 20$                                   |");
+                        Console.WriteLine("| 3. Item 3, 50$                                   |");
+                        Console.WriteLine(" --------------------------------------------------");
+
+                        //if in between 1 and 3 and an int, continue
+                        if (int.TryParse(Console.ReadLine(), out itemChoice) && itemChoice > 0 && itemChoice < 4)
+                        {
+                            Functions.Space();
+                            break;
+                        }
+                        //if not, error
+                        else
+                        {
+                            Functions.Error();
+                            continue;
+                        }
+                    }
+
+                    switch (itemChoice)
+                    {
+                        case 1:
+                            if(player.money > 10)
+                            {
+                                Console.WriteLine("You bought item 1, congrats!");
+                                Functions.Continue();
+                            }
+                            else
+                            {
+                                Console.WriteLine("You can't afford that! Get outta here!");
+                                Functions.Continue();
+                            }
+                            goto begin;
+
+                        case 2:
+                            if (player.money > 20)
+                            {
+                                Console.WriteLine("You bought item 2, enjoy!");
+                                Functions.Continue();
+                            }
+                            else
+                            {
+                                Console.WriteLine("You can't afford that! Get outta here!");
+                                Functions.Continue();
+                            }
+                            goto begin;
+
+                        case 3:
+                            if (player.money > 50)
+                            {
+                                Console.WriteLine("You bought item 3, enjoy!");
+                                Functions.Continue();
+                            }
+                            else
+                            {
+                                Console.WriteLine("You can't afford that! Get outta here!");
+                                Functions.Continue();
+                            }
+                            goto begin;
+                    }
+                    goto begin;
+                case 3:
+                    Console.WriteLine("Took a nap! That did nothing!");
+                    Functions.Continue();
+
+                    goto begin;
+            }
+
+            
+
         }
 
 

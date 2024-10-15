@@ -153,7 +153,7 @@ namespace ConsoleApp1
         }
         */
 
-        battle: 
+        battle:
 
             //Battle output
             //Console.WriteLine("Enemy: {0}", enemy.mPokeName);
@@ -173,9 +173,9 @@ namespace ConsoleApp1
             //Console.WriteLine("3. Attack Buff");
 
             //set UI Results box
-            InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];//"Choose an action!"
+            //InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[1];//"Choose an action!"
             //reset UI
-            Functions.Continue();
+            Console.Clear();
             InUIObject.FindDefendPokeArt(InenemyPokemon);
             InUIObject.FindPlayerPokeArt(Inpokemon);
 
@@ -215,7 +215,7 @@ namespace ConsoleApp1
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
                     //reset UI
-                    Functions.Continue();
+                    
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
@@ -227,6 +227,8 @@ namespace ConsoleApp1
                         goto end;
                     }
 
+                    Functions.Continue();
+
                     goto enemy;
 
                 case 2:
@@ -234,7 +236,7 @@ namespace ConsoleApp1
                     //player turn
                     Inpokemon.AttackAccuracy(InenemyPokemon);
                     Console.WriteLine("You use Attack Accuracy and decreased enemy {0} accuracy by 2!", InenemyPokemon.mPokeName);
-                    Functions.Space();
+                    
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[2];//Sand attack
@@ -249,9 +251,11 @@ namespace ConsoleApp1
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
                     //reset UI
-                    Functions.Continue();
+                    Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
+
+                    Functions.Continue();
 
                     //enemy turn
                     goto enemy;
@@ -261,7 +265,7 @@ namespace ConsoleApp1
                     //player turn
                     Inpokemon.AttackBuff();
                     Console.WriteLine("You use Attack Buff!");
-                    Functions.Space();
+                    
                     //update UI lines
                     InUIObject.mUI_ResultsLine1 = InUIObject.mUI_ResultsLine1_String[0];//blank
                     InUIObject.mUI_ResultsLine2 = InUIObject.mUI_ResultsLine2_String[3];//Buff (sword dance)
@@ -274,10 +278,13 @@ namespace ConsoleApp1
                     {
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
+                    
                     //reset UI
-                    Functions.Continue();
+                    Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
+
+                    Functions.Continue();
 
 
                     //enemy turn
@@ -312,7 +319,7 @@ namespace ConsoleApp1
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
                     //reset UI
-                    Functions.Continue();
+                    Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
@@ -345,7 +352,7 @@ namespace ConsoleApp1
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
                     //reset UI
-                    Functions.Continue();
+                    Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
@@ -371,7 +378,7 @@ namespace ConsoleApp1
                         InUIObject.mUI_ResultsLine4 = InUIObject.mUI_ResultsLine4_String[0];//attack landed. Line is blank
                     }
                     //reset UI
-                    Functions.Continue();
+                    Console.Clear();
                     InUIObject.FindDefendPokeArt(InenemyPokemon);
                     InUIObject.FindPlayerPokeArt(Inpokemon);
 
