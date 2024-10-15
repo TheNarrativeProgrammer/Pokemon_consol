@@ -10,19 +10,21 @@ namespace ConsoleApp1
     internal class UI_Battle
     {
         //MEMBER VARIABLES - NON POKEMON
-        public string[] mUI_ResultsLine1_String = {"", "Choose an action!", "You won", "You lost", };
+        public string[] mUI_ResultsLine1_String = {"           ", "Choose an action!", "You won", "You lost", };
         public string mUI_ResultsLine1;
-        public string[] mUI_ResultsLine2_String = { "", "You use Tackle Attack", "You used Sand Attack", "You used sword dance", 
+        public string[] mUI_ResultsLine2_String = { "               ", "You use Tackle Attack", "You used Sand Attack", "You used sword dance", 
             "enemny use Tackle Attack", "Enemy used Sand Attack", "Enemy used sword dance", };
         public string mUI_ResultsLine2;
-        public string[] mUI_ResultsLine3_String = { "", "Your attack missed", "Your attack did 3x damage", "", };
-        public string mUI_ResultsLine3;
+        public string mUI_ResultsLine3;//string isn't a string array. Battle class sets this string
+        public string[] mUI_ResultsLine4_String = { "                    ", "Your attack missed", "Your attack did 3x damage", "", };
+        public string mUI_ResultsLine4;
 
         public UI_Battle()
         {
             mUI_ResultsLine1 = mUI_ResultsLine1_String[0];
             mUI_ResultsLine2 = mUI_ResultsLine2_String[0];
-            mUI_ResultsLine3 = mUI_ResultsLine3_String[0];
+            mUI_ResultsLine3 = "                     ";
+            mUI_ResultsLine4 = mUI_ResultsLine4_String[0];
         }
 
         //MEMBER VARIABLES - POKEMON AS STRINGS
@@ -60,7 +62,6 @@ namespace ConsoleApp1
                 "\t  `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--'",
                 "\t ",
                 "\t ",
-                "\t ",
             };
         public string[] mUISquirtle_String =
             { "\t                _,........__",
@@ -81,7 +82,6 @@ namespace ConsoleApp1
                 "\t  `.          |              `.          |  .     L",
                 "\t    `.        |`--...________.'.        j   |     |",
                 "\t      `._    .'      |          `.     .|   ,     |",
-                "\t         `--,\\       .            `7\"\"' |  ,      |",
                 "\t            ` `      `            /     |  |      |    _,-'\"\"\"`-.",
                 "\t             \\ `.     .          /      |  '      |  ,'          `.",
                 "\t              \\  v.__  .        '       .   \\    /| /              \\",
@@ -119,7 +119,6 @@ namespace ConsoleApp1
                 "\t           |                '     \\                `._  ,'",
                 "\t           |                 '     \\                 .'|",
                 "\t           |                 .      \\                | |",
-                "\t           |                 |       L              ,' |",
                 "\t            \\                |       |           ,'   /",
                 "\t          ,' \\               |  _.._ ,-..___,..-'    ,'",
                 "\t         /     .             .      `!             ,j'",
@@ -166,13 +165,11 @@ namespace ConsoleApp1
                 "\t                                 `'...___..`'--^--'",
                 "\t ",
                 "\t ",
-                "\t "
 
         };
 
         public string[] mUIPikachu_String =
                 {
-                "\tquu..__",
                 "\t $$$b  `---.__",
                 "\t  \"$$b        `--.                          ___.---uuudP",
                 "\t   `$$b           `.__.------.__     __.---'      $$$$\"              .",
@@ -332,9 +329,13 @@ namespace ConsoleApp1
         {
             for (int i = 0; i < InDefendPokeArt.Length; i++)
             {
-                if (i < 9)
+                if (i <=5)
                 {
-                    Console.WriteLine($"{InDefendPokeArt[i],-70}\t\t\t{InDefendPokeAttackStatBox[i],-20}");
+                    Console.WriteLine($"{InDefendPokeArt[i],-70}");
+                }
+                else if (i >=6 && i <=12 )
+                {
+                    Console.WriteLine($"{InDefendPokeArt[i],-70}\t\t\t{InDefendPokeAttackStatBox[i-6],-20}");
                 }
                 else
                 {
@@ -499,8 +500,6 @@ namespace ConsoleApp1
                 "\t\t| Health " + InPoke.mHP + "            |",
                 "\t\t|                                      |",
                 "\t\t|                                      |",
-                "\t\t|                                      |",
-                "\t\t|                                      |",
                 "\t\t|______________________________________|",
                 "\t                                         ",
             };
@@ -549,16 +548,16 @@ namespace ConsoleApp1
               string[] UI_Result_Squi = {"\t\t ",
                 "\t\t                         ",
                 "\t\t\t\t __________________________________",
-                "\t\t\t\t|" + mUI_ResultsLine1 + "|",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|                                  |",
-                "\t\t|__________________________________|",
+                "\t\t|"+ mUI_ResultsLine1 +"            ",
+                "\t\t|"+mUI_ResultsLine2 +"             ",
+                "\t\t|"+mUI_ResultsLine3 +"             ",
+                "\t\t|                                  ",
+                "\t\t|                                  ",
+                "\t\t|                                  ",
+                "\t\t|                                  ",
+                "\t\t|                                  ",
+                "\t\t|                                  ",
+                "\t\t|__________________________________",
                 "\t\t",
             };
             return UI_Result_Squi;
