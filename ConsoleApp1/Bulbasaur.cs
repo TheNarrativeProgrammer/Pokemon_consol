@@ -21,7 +21,7 @@ namespace ConsoleApp1
             this.mEXPoints = 0;
             this.mType = Type.Grass;                //Type and weakenss
             this.mWeakness = Weakness.Fire;
-            this.mAttack_Damage = 11;                //Attacks   
+            this.mAttack_Damage = 15;                //Attacks   
             this.mAttack_AccuracyDemoninator = 10;
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_WeaknessMultiplier = 1;

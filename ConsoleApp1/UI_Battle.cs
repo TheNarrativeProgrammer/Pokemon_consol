@@ -378,21 +378,18 @@ namespace ConsoleApp1
                     {
                         DefendPokeArt = mUICaterpie_String;
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
-                        Console.WriteLine("print caterpie");
                         break;
                     }
                 case "Pikachau":
                     {
                         DefendPokeArt = mUIPikachu_String;
                         DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
-                        Console.WriteLine("print pika");
                         break;
                     }
                 default:
                 {
                 DefendPokeArt = mUICaterpie_String;
                 DefendPokeAttackStatBox = UI_Defend_StatAttackBox(InDefendingPokemon);
-                Console.WriteLine("default triggered in art assignment");
                 break;
                 }
             }
@@ -470,7 +467,6 @@ namespace ConsoleApp1
                         PlayerPokeArt = mUIPikachu_String;
                         PlayerPokeAttackStatBox = UI_Pika_StatAttackBox(InPlayerPokemon);
                         PlayerPokeResultsBox = UI_Pika_Results();
-                        Console.WriteLine("default triggered in art assignment for player");
                         break;
                     }
             }

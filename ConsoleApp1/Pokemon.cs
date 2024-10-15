@@ -131,7 +131,6 @@ namespace ConsoleApp1
                     }
                         default:
                     {
-                        Console.WriteLine("In default, in attack swich statment and no weakness or strong affect to damage applied");
                         break;
                     }
             }
@@ -172,16 +171,12 @@ namespace ConsoleApp1
             {
             DamageToOponent = ((this.mAttack_Damage * this.mAttack_WeaknessMultiplier * this.mAttack_BuffMultiplier) - this.mAttack_StrengthSubtractor);
             }
-            else 
-            {
-                Console.WriteLine("FOR ERROR CHECKING. REMOVE AFTER GAME FINISHED. your attack missed.");
-            }
+
 
             //reset buff multiplier to 1 and subtractor
             this.mAttack_BuffMultiplier = 1;
             this.mAttack_StrengthSubtractor = 0;
 
-            Console.WriteLine("FOR ERROR CHECKING. In attack function");
             return DamageToOponent;
         }
 
@@ -198,10 +193,7 @@ namespace ConsoleApp1
                     InPokemon.mAttack_AccuracyDemoninator = 4;          //cap the affect on accuracy at a demoninator of 4
                 }
             }
-            else
-            {
-                Console.WriteLine("FOR ERROR TESTING. REMOVE AFTER GAME FINISHED. your attack missed.");
-            }
+
         }
 
                                                                                                                                 //ATTACK - BUFF 
